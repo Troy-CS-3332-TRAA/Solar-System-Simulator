@@ -22,10 +22,14 @@ public class Engine {
 	 * @return True if collision occurred
 	 */
 	boolean detectCollisions() {
+		boolean collision = false;
+		for(Body b1 : bodies) {
+			for(Body b2 : bodies) {
+				collision = BoundingBox.isIntersecting(b1.getBox(), b2.getBox());
+			}
+		}
 		
-		//TODO Implement collision detection
-		
-		return false;
+		return collision;
 	}
 	
 	/**
