@@ -58,20 +58,45 @@ public class BoundingBox {
 	 */
 	static boolean isIntersecting(BoundingBox box1, BoundingBox box2) {
 		//check box1 right edge with box2 left edge
-		if (box1.getXPosition() + box1.getWidth() < box2.getXPosition() ) {
-			return true;
+		if (box1.getXPosition() + box1.getWidth() > box2.getXPosition()) {
+			//Make sure it is in the same y space
+			if(box1.getYPosition() < box2.getYPosition() + box2.getHeight()) {
+				return true;
+			}
+			//check box1 bottom edge with box2 top edge
+			else if(box1.getYPosition() + box1.getHeight() > box2.getYPosition()) {
+				return true;
+			}
 		}
 		//check box1 left edge with box2 right edge
 		else if(box1.getXPosition() < box2.getXPosition() + box2.getWidth()) {
-			return true;
+			if(box1.getYPosition() < box2.getYPosition() + box2.getHeight()) {
+				return true;
+			}
+			//check box1 bottom edge with box2 top edge
+			else if(box1.getYPosition() + box1.getHeight() > box2.getYPosition()) {
+				return true;
+			}
 		}
 		//check box1 top edge with box2 bottom edge
-		else if(box1.getYPosition() > box2.getYPosition() + box2.getHeight()) {
-			return true;
+		else if(box1.getYPosition() < box2.getYPosition() + box2.getHeight()) {
+			//Make sure it is in the same x space
+			if (box1.getXPosition() + box1.getWidth() > box2.getXPosition()) {
+				return true;
+			}
+			else if(box1.getXPosition() < box2.getXPosition() + box2.getWidth()) {
+				return true;
+			}
 		}
 		//check box1 bottom edge with box2 top edge
 		else if(box1.getYPosition() + box1.getHeight() > box2.getYPosition()) {
-			return true;
+			//Make sure it is in the same x space
+			if (box1.getXPosition() + box1.getWidth() > box2.getXPosition()) {
+				return true;
+			}
+			else if(box1.getXPosition() < box2.getXPosition() + box2.getWidth()) {
+				return true;
+			}
 		}
 		return false;
 	}
