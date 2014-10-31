@@ -1,9 +1,11 @@
 package Engine;
+import java.util.ArrayList; //for making the BodyList
 
 public class Engine {
 	
 	//*****Global Members*****
 	Body bodies;
+	static ArrayList<Body> BodyList = new ArrayList<Body>();
 	
 	//*****Main Methods*****
 	/**
@@ -22,14 +24,10 @@ public class Engine {
 	 * @return True if collision occurred
 	 */
 	boolean detectCollisions() {
-		boolean collision = false;
-		for(Body b1 : bodies) {
-			for(Body b2 : bodies) {
-				collision = BoundingBox.isIntersecting(b1.getBox(), b2.getBox());
-			}
-		}
 		
-		return collision;
+		//TODO Implement collision detection
+		
+		return false;
 	}
 	
 	/**
@@ -47,5 +45,56 @@ public class Engine {
 	
 	//*****Utility Methods*****
 	
+	/**
+	 * @author CharlesWomble
+	 * @param tempBodyList
+	 * This method is not needed, as ArrayList contains the method sort which
+	 * essentially does the same thing, however I will keep this code 
+	 * for now, eventually we can implement the sort method.
+	 */
+	public static void arrangeList (ArrayList<Body> tempBodyList)
+	{
+		int numbodies = tempBodyList.size();
+		/*
+		 * this code checks the newest added Body with every other
+		 * Body in BodyList, if it is larger than one
+		 * it will place the Body in its index and shift every other 
+		 * Body one position to the right.
+		 * then it removes the new body from the end of BodyList
+		 */
+		for (int x = 0; x > numbodies; x++)
+		{
+				int y = numbodies - 1;
+				if (tempBodyList.get(y).getMass() > BodyList.get(x).getMass())
+				{
+					BodyList.add(x, tempBodyList.get(y));
+					BodyList.remove(y+1);
+				}
+		}
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * @param tempbody
+	 * This method adds a new Body to the end of the BodyList
+	 */
+	public static void addBody (Body tempbody)
+	{
+		//add new body to BodyList
+		BodyList.add(tempbody);
+		//Re-arrange BodyList
+		arrangeList(BodyList);
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * @param x
+	 * This method removes a Body from the BodyList at the 
+	 * specified position x.
+	 */
+	public void removeBody(int x)
+	{
+		BodyList.remove(x);
+	}
 	
 }
