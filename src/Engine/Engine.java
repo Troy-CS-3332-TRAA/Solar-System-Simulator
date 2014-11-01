@@ -36,7 +36,8 @@ public class Engine {
 	 * @version 1.0
 	 * @return
 	 */
-	boolean calculatePositions() {
+	boolean calculatePositions() 
+	{
 		
 		//TODO Implement position calculator
 		
@@ -97,4 +98,13 @@ public class Engine {
 		BodyList.remove(x);
 	}
 	
+	public boolean saveState(String fileName)
+	{
+		
+	}
+	
+	public boolean loadState(String fileName)
+	{
+		
+	}
 }
