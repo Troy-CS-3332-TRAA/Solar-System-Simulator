@@ -118,13 +118,11 @@ public class Engine {
 	 */
 	public boolean loadState(File file, ArrayList<Body> bodies) 
 	{
-		//TODO implement csv (MSDOS .csv format)
 		List<String> list;
 		try {
 			//Reads a list of files where each line in the file is an array element
 			list = Files.readAllLines(file.toPath());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
