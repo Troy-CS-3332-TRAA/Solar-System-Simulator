@@ -1,5 +1,11 @@
 package Engine;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList; //for making the BodyList
+import java.util.List;
 
 public class Engine {
 	
@@ -100,11 +106,52 @@ public class Engine {
 	
 	public boolean saveState(String fileName)
 	{
-		
+		return true;
 	}
 	
-	public boolean loadState(String fileName)
+	/**
+	 * @author Dexter Parks
+	 * @param file the input file to read
+	 * @param bodies the arraylist of the bodies, output
+	 * @return Boolean, true if it read the bodies from the file into the ArrayList
+	 * Reads a file and produces an ArrayList of Body objects.
+	 */
+	public boolean loadState(File file, ArrayList<Body> bodies) 
 	{
-		
+		//TODO implement csv (MSDOS .csv format)
+		List<String> list;
+		try {
+			//Reads a list of files where each line in the file is an array element
+			list = Files.readAllLines(file.toPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		String name;
+		double positionX;
+		double positionY;
+		double positionZ;
+		double radius;                                       // double * 10^6
+		double mass;                                         // double * 10^21
+		double gravityRadius;                                // double * 10^6
+		boolean isStar;
+		Velocity velocity;
+		for(String row : list) {
+			//Splits the line by use the comma as a delimiter, then parses them to the correct datatype
+			String[] rowSplit = row.split(",");
+			name = rowSplit[0];
+			positionX = Double.parseDouble(rowSplit[1]);
+			positionY = Double.parseDouble(rowSplit[2]);
+			positionZ = Double.parseDouble(rowSplit[3]);
+			radius = Double.parseDouble(rowSplit[4]);
+			mass = Double.parseDouble(rowSplit[5]);
+			gravityRadius = Double.parseDouble(rowSplit[6]);
+			isStar = Boolean.parseBoolean(rowSplit[7]);
+			velocity = new Velocity(Double.parseDouble(rowSplit[8]));
+			//Constructs abody object and adds it to the ArrayList
+			bodies.add(new Body(name, positionX, positionY, positionZ, radius, mass, velocity));
+		}
+		return true;
 	}
 }

@@ -80,8 +80,9 @@ public class Body
 	 * @param posz
 	 * @param rad
 	 * @param mas
+	 * @param velocity2 
 	 */
-	Body (String nam, double posx, double posy, double posz, double rad, double mas)
+	Body (String nam, double posx, double posy, double posz, double rad, double mas, Velocity velocity2)
 	{
 		name             = nam;
 		positionX        = posx;

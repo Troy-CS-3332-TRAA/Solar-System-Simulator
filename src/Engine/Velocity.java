@@ -9,7 +9,17 @@ public class Velocity
 {
 
 	//***members***//
-	double orbitalvelocity; //this will be calculated
+	double orbitalVelocity; //this will be calculated
+	//TODO creates constructors
+	Velocity()
+	{
+		
+	}
+	
+	Velocity(double orbitalVelocity)
+	{
+		this.orbitalVelocity = orbitalVelocity;
+	}
 	
 	
 }
