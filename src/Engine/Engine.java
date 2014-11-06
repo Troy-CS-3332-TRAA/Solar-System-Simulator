@@ -102,6 +102,7 @@ public class Engine {
 	
 	public boolean saveState(String fileName, ArrayList <Body> Bodies)
 	{
+<<<<<<< HEAD
 		try 
 		{
 			FileWriter writer = new FileWriter (fileName);
@@ -139,10 +140,13 @@ public class Engine {
 		
 		
 		return true;
+=======
+		
+>>>>>>> parent of ffd4635... Implemented save module
 	}
 	
 	public boolean loadState(String fileName)
 	{
-		return true;
+		
 	}
 }
