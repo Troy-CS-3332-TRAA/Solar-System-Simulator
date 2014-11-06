@@ -100,6 +100,14 @@ public class Engine {
 		BodyList.remove(x);
 	}
 	
+	/**
+	 * @author CharlesWomble
+	 * This method saves the state of the program 
+	 * to a CSV file.
+	 * @param fileName user inputs name of file
+	 * @param Bodies  accepts BodyList as parameter
+	 * @return boolean, true if successful false if not
+	 */
 	public boolean saveState(String fileName, ArrayList <Body> Bodies)
 	{
 		try 
@@ -122,7 +130,7 @@ public class Engine {
 			writer.append(',');
 			writer.append(Double.toString(Bodies.get(x).getGravity()));
 			writer.append(',');
-			writer.append(Bodies.get(x).getStar());
+			writer.append(Integer.toString(Bodies.get(x).getStar()));
 			writer.append(',');
 			writer.append(Double.toString(Bodies.get(x).getVelocity()));
 			writer.append('\n');
