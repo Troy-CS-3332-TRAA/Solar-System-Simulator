@@ -1,8 +1,7 @@
 package Engine;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList; //for making the BodyList
 import java.util.List;
@@ -104,9 +103,51 @@ public class Engine {
 		BodyList.remove(x);
 	}
 	
-	public boolean saveState(String fileName)
+	/**
+	 * @author CharlesWomble
+	 * This method saves the state of the program 
+	 * to a CSV file.
+	 * @param fileName user inputs name of file
+	 * @param Bodies  accepts BodyList as parameter
+	 * @return boolean, true if successful false if not
+	 */
+	public boolean saveState(String fileName, ArrayList <Body> Bodies)
 	{
-		return true;
+		try 
+		{
+			FileWriter writer = new FileWriter (fileName);
+			
+			for (int x = 0; x < Bodies.size(); x++)
+			{
+			writer.append(Bodies.get(x).getName());
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getPosition(1)));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getPosition(2)));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getPosition(3)));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getRadius()));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getMass()));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getGravity()));
+			writer.append(',');
+			writer.append(Integer.toString(Bodies.get(x).getStar()));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getVelocity()));
+			writer.append('\n');
+			writer.flush();
+			}
+			writer.close();
+			return true;
+		} 
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return false;
 	}
 	
 	/**
@@ -150,6 +191,6 @@ public class Engine {
 			//Constructs abody object and adds it to the ArrayList
 			bodies.add(new Body(name, positionX, positionY, positionZ, radius, mass, velocity));
 		}
-		return true;
+		return !bodies.isEmpty();
 	}
 }

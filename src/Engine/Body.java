@@ -53,9 +53,9 @@ public class Body
 	/**
 	 * @author CharlesWomble
 	 * Constructs a star in center of coordinates
-	 * @param nam
-	 * @param rad
-	 * @param mas
+	 * @param nam name of Body
+	 * @param rad radius of Body
+	 * @param mas mass of Body
 	 */
 	Body (String nam,double rad, double mas)
 	{
@@ -74,13 +74,12 @@ public class Body
 	/**
 	 * @author CharlesWomble
 	 * Constructs a Body with specified variables
-	 * @param nam
-	 * @param posx
-	 * @param posy
-	 * @param posz
-	 * @param rad
-	 * @param mas
-	 * @param velocity2 
+	 * @param nam   name of Body
+	 * @param posx  positionX of Body
+	 * @param posy  positionY of Body
+	 * @param posz  positionZ of Body
+	 * @param rad   radius of Body
+	 * @param mas   mass of Body
 	 */
 	Body (String nam, double posx, double posy, double posz, double rad, double mas, Velocity velocity2)
 	{
@@ -109,9 +108,43 @@ public class Body
 	
 	/**
 	 * @author CharlesWomble
+	 * This method returns the Name of the Body
+	 * @return returns name of Body as String
+	 */
+	public String getName ()
+	{
+		return name;
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * This method returns the Radius of the Body
+	 * @return returns radius of Body
+	 */
+	public double getRadius ()
+	{
+		return radius;
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * This method checks if Body is a start and returns 
+	 * string with true/false
+	 * to be used with save module.
+	 * @return returns 1 if true, 0 if false
+	 */
+	public int getStar ()
+	{
+		if (isstar)
+			return 1;
+		return 0;
+	}
+	
+	/**
+	 * @author CharlesWomble
 	 * This method returns the specified coordinate of the Body
-	 * @param x
-	 * @return
+	 * @param x is the position you would like to be returned, 1 for x, 2 for y, 3 for z
+	 * @return returns the position requested.
 	 */
 	public double getPosition(int x)
 	{
@@ -122,7 +155,7 @@ public class Body
 	/**
 	 * @author CharlesWomble
 	 * returns the gravity strength of the Body
-	 * @return
+	 * @return returns the gravity of the Body
 	 */
 	public double getGravity()
 	{
@@ -133,8 +166,19 @@ public class Body
 	
 	/**
 	 * @author CharlesWomble
+	 * This method returns the Velocity of the Body
+	 * @return returns the velocity of the Body
+	 */
+	public double getVelocity ()
+	{
+		//TODO implement this
+		return 0.0;
+	}
+	
+	/**
+	 * @author CharlesWomble
 	 * Sets the mass of the Body
-	 * @param mas
+	 * @param mas accepts a double to set body's mass to
 	 */
 	public void setMass(double mas)
 	{
@@ -158,7 +202,7 @@ public class Body
 	/**
 	 * @author CharlesWomble
 	 * sets radius of Body
-	 * @param rad
+	 * @param rad accepts a radius to set Body radius to 
 	 */
 	public void setRadius(double rad)
 	{
@@ -168,9 +212,9 @@ public class Body
 	/**
 	 * @author CharlesWomble
 	 * gets the distance between two bodies
-	 * @param tempbody1
-	 * @param tempbody2
-	 * @return
+	 * @param tempbody1 first body in distance formula
+	 * @param tempbody2 second body in distance formula
+	 * @return double that is distance between Bodies
 	 * ??? should this go to another class???
 	 * currently this is static as it is called in the constructor
 	 * of the Body class (to get distancefromstar)
