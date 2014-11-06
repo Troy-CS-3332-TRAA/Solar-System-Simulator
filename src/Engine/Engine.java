@@ -129,16 +129,14 @@ public class Engine {
 			writer.flush();
 			}
 			writer.close();
+			return true;
 		} 
 		catch (IOException e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
-		
-		
-		return true;
+		return false;
 	}
 	
 	public boolean loadState(String fileName)

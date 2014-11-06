@@ -15,18 +15,6 @@ import java.lang.Math; //for getDistance, pow/sqrt functions
  * 778,600,000 km. for 5973.6 the mass would be
  * 5,973,600,000,000,000,000,000,000 kg.
  */
-/**
- * @author Alien 14
- *
- */
-/**
- * @author Alien 14
- *
- */
-/**
- * @author Alien 14
- *
- */
 public class Body 
 {
 	//members//
