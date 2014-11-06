@@ -8,11 +8,10 @@ import java.util.List;
 
 public class Engine {
 	
-	//*****Global Members*****
-	Body bodies;
-	static ArrayList<Body> BodyList = new ArrayList<Body>();
+	//-----Global Members-----
+	ArrayList<Body> bodies = new ArrayList<Body>();
 	
-	//*****Main Methods*****
+	//-----Main Methods-----
 	/**
 	 * This is method that is called to simulate the next step of the simulation
 	 * @author Dexter Parks
@@ -43,13 +42,48 @@ public class Engine {
 	 */
 	boolean calculatePositions() 
 	{
-		
 		//TODO Implement position calculator
-		
 		return true;
 	}
 	
-	//*****Utility Methods*****
+	/**
+	 * Clears any previoulsy used variables and initializes them for a new simulation.
+	 * @author Dexter Parks
+	 * Nov 6, 2014
+	 * @return True if success, fail if there was an error.
+	 */
+	public boolean newSimulation() {
+		//TODO Implement newSimulation()
+		return true;
+	}
+	
+	/**
+	 * Clears any previously used varibales and initializes them from a given file input.
+	 * @author Dexter Parks
+	 * Nov 6, 2014
+	 * @return True if success, fail if there was an error.
+	 */
+	public boolean loadSimulation(File file) {
+		boolean success = false;
+		bodies = new ArrayList<Body>();
+		success = loadState(file, bodies);
+		return success;
+	}
+	
+	/**
+	 * Saves the current state as a CSV file.
+	 * @author Dexter
+	 * Nov 6, 2014
+	 * @param file The file corresponding to the location of where to save the file.
+	 * @return True if success, fail if there was an error.
+	 */
+	public boolean saveSimulation(File file) {
+		boolean success = false;
+		success = saveState(file, bodies);
+		return success;
+	}
+	
+	//-----Utility Methods-----
 	
 	/**
 	 * @author CharlesWomble
@@ -111,11 +145,11 @@ public class Engine {
 	 * @param Bodies  accepts BodyList as parameter
 	 * @return boolean, true if successful false if not
 	 */
-	public boolean saveState(String fileName, ArrayList <Body> Bodies)
+	public boolean saveState(File file, ArrayList <Body> Bodies)
 	{
 		try 
 		{
-			FileWriter writer = new FileWriter (fileName);
+			FileWriter writer = new FileWriter (file);
 			
 			for (int x = 0; x < Bodies.size(); x++)
 			{
