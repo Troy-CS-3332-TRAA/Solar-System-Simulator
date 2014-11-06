@@ -15,6 +15,18 @@ import java.lang.Math; //for getDistance, pow/sqrt functions
  * 778,600,000 km. for 5973.6 the mass would be
  * 5,973,600,000,000,000,000,000,000 kg.
  */
+/**
+ * @author Alien 14
+ *
+ */
+/**
+ * @author Alien 14
+ *
+ */
+/**
+ * @author Alien 14
+ *
+ */
 public class Body 
 {
 	//members//
@@ -108,6 +120,40 @@ public class Body
 	
 	/**
 	 * @author CharlesWomble
+	 * This method returns the Name of the Body
+	 * @return
+	 */
+	public String getName ()
+	{
+		return name;
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * This method returns the Radius of the Body
+	 * @return
+	 */
+	public double getRadius ()
+	{
+		return radius;
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * This method checks if Body is a start and returns 
+	 * string with true/false
+	 * to be used with save module.
+	 * @return
+	 */
+	public String getStar ()
+	{
+		if (isstar)
+			return "True";
+		return "False";
+	}
+	
+	/**
+	 * @author CharlesWomble
 	 * This method returns the specified coordinate of the Body
 	 * @param x
 	 * @return
@@ -128,6 +174,17 @@ public class Body
 		double gravity=0.0;
 		//implement math here
 		return gravity;
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * This method returns the Velocity of the Body
+	 * @return
+	 */
+	public double getVelocity ()
+	{
+		//TODO implement this
+		return 0.0;
 	}
 	
 	/**

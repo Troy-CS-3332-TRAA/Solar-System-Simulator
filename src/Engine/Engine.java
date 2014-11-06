@@ -1,5 +1,7 @@
 package Engine;
 import java.util.ArrayList; //for making the BodyList
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Engine {
 	
@@ -98,8 +100,44 @@ public class Engine {
 		BodyList.remove(x);
 	}
 	
-	public boolean saveState(String fileName)
+	public boolean saveState(String fileName, ArrayList <Body> Bodies)
 	{
+		try 
+		{
+			FileWriter writer = new FileWriter (fileName);
+			
+			for (int x = 0; x < Bodies.size(); x++)
+			{
+			writer.append(Bodies.get(x).getName());
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getPosition(1)));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getPosition(2)));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getPosition(3)));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getRadius()));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getMass()));
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getGravity()));
+			writer.append(',');
+			writer.append(Bodies.get(x).getStar());
+			writer.append(',');
+			writer.append(Double.toString(Bodies.get(x).getVelocity()));
+			writer.append('\n');
+			writer.flush();
+			}
+			writer.close();
+		} 
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		
+		
 		return true;
 	}
 	
