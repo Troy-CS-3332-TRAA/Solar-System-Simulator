@@ -33,6 +33,7 @@ public class PositionCalculator
 	
 	public double getGravityPull ()
 	{
+		//TODO implement this code
 		return 1.0;
 	}
 	

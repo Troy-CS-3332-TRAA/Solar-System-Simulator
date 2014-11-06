@@ -100,11 +100,11 @@ public class Engine {
 	
 	public boolean saveState(String fileName)
 	{
-		
+		return true;
 	}
 	
 	public boolean loadState(String fileName)
 	{
-		
+		return true;
 	}
 }
