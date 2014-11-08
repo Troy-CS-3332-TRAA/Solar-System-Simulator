@@ -38,6 +38,7 @@ public class DataWindow extends JFrame {
 	//-----Methods-----//
 	void step(ArrayList<Body> bodies) {
 		this.bodies = bodies;
+		myWindow.updateTable(this.bodies);
 	}
 	
 	//-----Utility Methods-----//

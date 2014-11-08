@@ -17,7 +17,6 @@ public class TableWindow extends JPanel {
 	
 	//-----Constructors-----//
 	public TableWindow() {
-		// TODO Auto-generated constructor stub
 		initTableWindow();
 	}
 	
@@ -27,7 +26,10 @@ public class TableWindow extends JPanel {
 	}
 	
 	//-----Methods-----//
-	
+	public void updateTable(ArrayList<Body> bodies) {
+		this.bodies = bodies;
+		((BodyTableModel) table.getModel()).setBodies(bodies).fireTableDataChanged();
+	}
 	//-----Utility Methods-----//
 	protected void initTableWindow() {
 		table = new JTable(new BodyTableModel(bodies));

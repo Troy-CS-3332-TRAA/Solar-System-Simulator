@@ -52,8 +52,15 @@ public class BodyTableModel extends AbstractTableModel {
 		}
 		return null;
 	}
-	
+
 	//-----Utility Methods-----//
 	
 	//-----Getters/Setters-----//
+	/**
+	 * @param bodies the bodies to set
+	 */
+	public BodyTableModel setBodies(ArrayList<Body> bodies) {
+		this.bodies = bodies;
+		return this;
+	}
 }
