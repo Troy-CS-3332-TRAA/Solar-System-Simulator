@@ -8,10 +8,15 @@ import java.util.List;
 
 public class Engine {
 	
-	//-----Global Members-----
+	//-----Global Members-----/
 	ArrayList<Body> bodies = new ArrayList<Body>();
 	
-	//-----Main Methods-----
+	//-----Constructors-----/
+	Engine() {
+		
+	}
+	
+	//-----Main Methods-----/
 	/**
 	 * This is method that is called to simulate the next step of the simulation
 	 * @author Dexter Parks
@@ -145,31 +150,32 @@ public class Engine {
 	 * @param Bodies  accepts BodyList as parameter
 	 * @return boolean, true if successful false if not
 	 */
-	public boolean saveState(File file, ArrayList <Body> Bodies)
+	public boolean saveState(File file, ArrayList <Body> bodies)
 	{
 		try 
 		{
 			FileWriter writer = new FileWriter (file);
 			
-			for (int x = 0; x < Bodies.size(); x++)
+			for (int x = 0; x < bodies.size(); x++)
 			{
-			writer.append(Bodies.get(x).getName());
+			writer.append(bodies.get(x).getName());
 			writer.append(',');
-			writer.append(Double.toString(Bodies.get(x).getPosition(1)));
+			writer.append(Double.toString(bodies.get(x).getPositionX()));
 			writer.append(',');
-			writer.append(Double.toString(Bodies.get(x).getPosition(2)));
+			writer.append(Double.toString(bodies.get(x).getPositionY()));
 			writer.append(',');
-			writer.append(Double.toString(Bodies.get(x).getPosition(3)));
+			writer.append(Double.toString(bodies.get(x).getPositionZ()));
 			writer.append(',');
-			writer.append(Double.toString(Bodies.get(x).getRadius()));
+			writer.append(Double.toString(bodies.get(x).getRadius()));
 			writer.append(',');
-			writer.append(Double.toString(Bodies.get(x).getMass()));
+			writer.append(Double.toString(bodies.get(x).getMass()));
 			writer.append(',');
-			writer.append(Double.toString(Bodies.get(x).getGravity()));
+			writer.append(Double.toString(bodies.get(x).getGravity()));
 			writer.append(',');
-			writer.append(Integer.toString(Bodies.get(x).getStar()));
+			writer.append(Boolean.toString(bodies.get(x).isStar()));
 			writer.append(',');
-			writer.append(Double.toString(Bodies.get(x).getVelocity()));
+			//TODO implement load/save of Velocity Object
+			writer.append(Double.toString(bodies.get(x).getVelocity()));
 			writer.append('\n');
 			writer.flush();
 			}

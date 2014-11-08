@@ -6,8 +6,8 @@ public class BoundingBox {
 	float width;
 	float height;
 	
-	float xPosition;
-	float yPosition;
+	float positionX;
+	float positionY;
 	
 	
 	//-----Constructors-----
@@ -17,22 +17,22 @@ public class BoundingBox {
 	BoundingBox() {
 		width = 0;
 		height = 0;
-		xPosition = 0;
-		yPosition = 0;
+		positionX = 0;
+		positionY = 0;
 	}
 	/**
 	 * This creates a Bounding Box. The x, y, width, height correspond to the upper left corner of the box. 
 	 * 
-	 * @param xPosition
-	 * @param yPosition
+	 * @param positionX
+	 * @param positionY
 	 * @param width
 	 * @param height
 	 */
-	BoundingBox(float xPosition, float yPosition, float width, float height) {
+	BoundingBox(float positionX, float positionY, float width, float height) {
 		this.width = width;
 		this.height = height;
-		this.xPosition = xPosition;
-		this.yPosition = yPosition;
+		this.positionX = positionX;
+		this.positionY = positionY;
 	}
 	
 	//-----Methods-----
@@ -40,12 +40,12 @@ public class BoundingBox {
 	 * 
 	 * This is a convenience method to update both the x and y position of the bounding box.
 	 * 
-	 * @param xPosition
-	 * @param yPosition
+	 * @param positionX
+	 * @param positionY
 	 */
-	public void updatePosition(float xPosition, float yPosition) {
-		this.xPosition = xPosition;
-		this.yPosition = yPosition;
+	public void updatePosition(float positionX, float positionY) {
+		this.positionX = positionX;
+		this.positionY = positionY;
 	}
 	//-----Static Methods-----
 	/**
@@ -131,31 +131,31 @@ public class BoundingBox {
 	}
 
 	/**
-	 * @return the xPosition
+	 * @return the positionX
 	 */
 	public float getXPosition() {
-		return xPosition;
+		return positionX;
 	}
 
 	/**
-	 * @param xPosition the xPosition to set
+	 * @param positionX the positionX to set
 	 */
-	public void setXPosition(float xPosition) {
-		this.xPosition = xPosition;
+	public void setXPosition(float positionX) {
+		this.positionX = positionX;
 	}
 
 	/**
-	 * @return the yPosition
+	 * @return the positionY
 	 */
 	public float getYPosition() {
-		return yPosition;
+		return positionY;
 	}
 
 	/**
-	 * @param yPosition the yPosition to set
+	 * @param positionY the positionY to set
 	 */
-	public void setYPosition(float yPosition) {
-		this.yPosition = yPosition;
+	public void setYPosition(float positionY) {
+		this.positionY = positionY;
 	}
 	
 }
