@@ -5,6 +5,7 @@ import Engine.Body;
 
 public class GUI {
     //-----Members-----
+	private DataWindow dataWindow;
 	
 	//-----Constructors-----
 	/**
@@ -13,8 +14,9 @@ public class GUI {
 	 * @author Dexter
 	 * Nov 6, 2014
 	 */
-	GUI() {
+	public GUI() {
 		//TODO Implement default constructor
+		dataWindow = new DataWindow("Solar System Data");
 	}
 	/**
 	 * Creates the gui object with two frames. One frame is a window providing a visualization
@@ -23,7 +25,7 @@ public class GUI {
 	 * Nov 6, 2014
 	 * @param bodies The initial ArrayList of body objects that provide the updated data.
 	 */
-	GUI(ArrayList<Body> bodies) {
+	public GUI(ArrayList<Body> bodies) {
 		//TODO Implement constructor
 	}
 	
@@ -36,7 +38,7 @@ public class GUI {
 	 * @return True if there were no errors and false if it failed.
 	 */
 	boolean step(ArrayList<Body> bodies) {
-		//TODO Implement step method
+		dataWindow.step(bodies);
 		return true;
 	}
 	
