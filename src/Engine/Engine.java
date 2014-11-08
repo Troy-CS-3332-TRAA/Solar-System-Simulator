@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList; //for making the BodyList
+import java.util.Collections;
 import java.util.List;
 
 public class Engine {
@@ -230,6 +231,7 @@ public class Engine {
 			velocity = new Velocity(Double.parseDouble(rowSplit[8]));
 			//Constructs abody object and adds it to the ArrayList
 			bodies.add(new Body(name, positionX, positionY, positionZ, radius, mass, velocity, bodies.get(0)));
+			Collections.sort(bodies);
 		}
 		return !bodies.isEmpty();
 	}

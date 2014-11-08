@@ -1,6 +1,7 @@
 package Engine;
 
-import java.lang.Math; //for getDistance, pow/sqrt functions
+import java.util.Comparator;
+
 
 
 /**
@@ -15,7 +16,7 @@ import java.lang.Math; //for getDistance, pow/sqrt functions
  * 778,600,000 km. for 5973.6 the mass would be
  * 5,973,600,000,000,000,000,000,000 kg.
  */
-public class Body
+public class Body implements Comparable<Body>
 {
 	//-----Members-----//
 	String name;
@@ -29,9 +30,8 @@ public class Body
 	double gravityRadius;                                // double * 10^6
 	double distanceFromStar; //calculated in constructor // double * 10^6
 	boolean star; //used for above^
-	BoundingBox box; // <-- fix this 
 	Velocity velocity;
-	
+	BoundingBox box; // <-- fix this 
 	/**
 	 * @author CharlesWomble
 	 * default constructor
@@ -97,6 +97,12 @@ public class Body
 		//TODO Implement getGravity()
 		return 0.0;
 	}
+	
+	@Override
+	public int compareTo(Body b) {
+		return new Double(mass).compareTo(b.getMass());
+	}
+	
 	//-----Getters/Setters-----//
 	/**
 	 * @author Dexter Parks
