@@ -22,9 +22,9 @@ public class PositionCalculator
 		//members//
 		double[]oldposition = new double[]{0.0,0.0,0.0};
 		
-		oldposition[0] = tempbody.getPosition(0);
-		oldposition[1] = tempbody.getPosition(1);
-		oldposition[2] = tempbody.getPosition(2);
+		oldposition[0] = tempbody.getPositionX();
+		oldposition[1] = tempbody.getPositionY();
+		oldposition[2] = tempbody.getPositionZ();
 		
 		//velocity? 
 		

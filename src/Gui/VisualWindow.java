@@ -1,15 +1,15 @@
 package Gui;
 import java.awt.*;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.util.ArrayList;
+import Engine.Body;
 
-public class VisualWindow extends JPanel
+public class VisualWindow extends JFrame
 {
+	//-----members-----//
+	private ArrayList <Body> bodies;
 	
 	
-	public void paintComponent (Graphics g)
-	{
-		super.paintComponent(g);
-		this.setBackground(Color.black);
-	}
 	
 }

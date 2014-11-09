@@ -24,6 +24,15 @@ public class DrawBodies extends JPanel
 	}
 	
 	
+	/* 
+	 * @author CharlesWomble
+	 * This method paints all the bodies in the ArrayList
+	 * ints a, b, & c are the double values of the positions
+	 * and radius of the Body casted into ints to be used
+	 * for fillOval (c is used twice because it is a circle and 
+	 * width + height should be the same.
+	 * @Graphics g (from java.awt.Graphics)
+	 */
 	public void paintComponent (Graphics g)
 	{
 		super.paintComponent(g);
@@ -32,8 +41,11 @@ public class DrawBodies extends JPanel
 		
 		for (int x = 0; x > bodies.size();x++)
 		{
-			fillOval(bodies.get(x).getPositionX(), bodies.get(x).getPositionY(),
-					bodies.get(x).getRadius(), bodies.get(x).getRadius() );
+			int a = (int) Math.round(bodies.get(x).getPositionX());
+			int b = (int) Math.round(bodies.get(x).getPositionY());
+			int c = (int) Math.round(bodies.get(x).getRadius());
+			
+			g.fillOval(a, b, c, c);
 			//TODO draw gravity radius/ make window resizable
 		}
 	}

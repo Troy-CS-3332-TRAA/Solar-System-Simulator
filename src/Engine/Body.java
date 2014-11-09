@@ -1,6 +1,7 @@
 package Engine;
 
-import java.lang.Math; //for getDistance, pow/sqrt functions
+import java.util.Comparator;
+
 
 
 /**
@@ -15,9 +16,9 @@ import java.lang.Math; //for getDistance, pow/sqrt functions
  * 778,600,000 km. for 5973.6 the mass would be
  * 5,973,600,000,000,000,000,000,000 kg.
  */
-public class Body 
+public class Body implements Comparable<Body>
 {
-	//members//
+	//-----Members-----//
 	String name;
 	static double GRAVCONSTANT = .000000000066719199;   //??? should this be moved to another class???
 	//GRAVCONSTANT is actually 6.67191(99)*10 ^-11 m^3 * kg^-1 * s^-2
@@ -26,12 +27,11 @@ public class Body
 	double positionZ;
 	double radius;                                       // double * 10^6
 	double mass;                                         // double * 10^21
-	double gravityradius;                                // double * 10^6
-	double distancefromstar; //calculated in constructor // double * 10^6
-	boolean isstar; //used for above^
-	BoundingBox box; // <-- fix this 
+	double gravityRadius;                                // double * 10^6
+	double distanceFromStar; //calculated in constructor // double * 10^6
+	boolean star; //used for above^
 	Velocity velocity;
-	
+	BoundingBox box; // <-- fix this 
 	/**
 	 * @author CharlesWomble
 	 * default constructor
@@ -44,9 +44,9 @@ public class Body
 		positionZ        = 0.0;
 		radius           = 0.0; // measured in 10 ^ 6  km
 		mass             = 0.0; // measured in 10 ^ 21 kg
-		gravityradius    = 0.0; // measured in 10 ^ 6  km
-		distancefromstar = 0.0; // measured in 10 ^ 6  km
-		isstar           = true;
+		gravityRadius    = 0.0; // measured in 10 ^ 6  km
+		distanceFromStar = 0.0; // measured in 10 ^ 6  km
+		star           = true;
 	}
 	
 	/**
@@ -64,148 +64,222 @@ public class Body
 		positionZ        = 0.0;
 		radius           = rad;
 		mass             = mas;
-		distancefromstar = 0.0;
-		isstar           = true;
-		gravityradius    = this.getGravity();
+		distanceFromStar = 0.0;
+		star           = true;
+		gravityRadius    = this.getGravity();
 	}
 	
 	/**
 	 * @author CharlesWomble
 	 * Constructs a Body with specified variables
 	 * @param nam   name of Body
-	 * @param posx  positionX of Body
-	 * @param posy  positionY of Body
-	 * @param posz  positionZ of Body
+	 * @param posX  positionX of Body
+	 * @param posY  positionY of Body
+	 * @param posZ  positionZ of Body
 	 * @param rad   radius of Body
 	 * @param mas   mass of Body
 	 */
-	Body (String nam, double posx, double posy, double posz, double rad, double mas, Velocity velocity2, Body star)
+	Body (String nam, double posX, double posY, double posZ, double rad, double mass, Velocity velocity2, Body star)
 	{
 		name             = nam;
-		positionX        = posx;
-		positionY        = posy;
-		positionZ        = posz;
+		positionX        = posX;
+		positionY        = posY;
+		positionZ        = posZ;
 		radius           = rad;
-		mass             = mas;
-		distancefromstar = Body.getDistance(this, star);
-		isstar           = false;
-		gravityradius    = this.getGravity();
+		this.mass        = mass;
+		distanceFromStar = Body.getDistance(this, star);
+		this.star      	     = false;
+		gravityRadius    = this.getGravity();
 	}
 	
-	//**************Methods**************//
-	/**
-	 * @author CharlesWomble
-	 * This method returns the Mass of the Body
-	 * @return
-	 */
-	public double getMass ()
-	{
-		return mass;
-	}
-	
-	/**
-	 * @author CharlesWomble
-	 * This method returns the Name of the Body
-	 * @return returns name of Body as String
-	 */
-	public String getName ()
-	{
-		return name;
-	}
-	
-	/**
-	 * @author CharlesWomble
-	 * This method returns the Radius of the Body
-	 * @return returns radius of Body
-	 */
-	public double getRadius ()
-	{
-		return radius;
-	}
-	
-	/**
-	 * @author CharlesWomble
-	 * This method checks if Body is a start and returns 
-	 * string with true/false
-	 * to be used with save module.
-	 * @return returns 1 if true, 0 if false
-	 */
-	public int getStar ()
-	{
-		if (isstar)
-			return 1;
-		return 0;
-	}
-	
-	/**
-	 * @author CharlesWomble
-	 * This method returns the specified coordinate of the Body
-	 * @param x is the position you would like to be returned, 1 for x, 2 for y, 3 for z
-	 * @return returns the position requested.
-	 */
-	public double getPosition(int x)
-	{
-		double[] positionArray = new double[] {positionX, positionY, positionZ};
-		return positionArray[x];
-	}
-	
-	/**
-	 * @author CharlesWomble
-	 * returns the gravity strength of the Body
-	 * @return returns the gravity of the Body
-	 */
-	public double getGravity()
-	{
-		double gravity=0.0;
-		//implement math here
-		return gravity;
-	}
-	
-	/**
-	 * @author CharlesWomble
-	 * This method returns the Velocity of the Body
-	 * @return returns the velocity of the Body
-	 */
-	public double getVelocity ()
-	{
-		//TODO implement this
+	//-----Methods-----//
+	double getGravity() {
+		//TODO Implement getGravity()
 		return 0.0;
 	}
 	
+	@Override
+	public int compareTo(Body b) {
+		return new Double(mass).compareTo(b.getMass());
+	}
+	
+	//-----Getters/Setters-----//
 	/**
-	 * @author CharlesWomble
-	 * Sets the mass of the Body
-	 * @param mas accepts a double to set body's mass to
+	 * @author Dexter Parks
+	 * @return the name
 	 */
-	public void setMass(double mas)
-	{
-		mass=mas;
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the positionX
+	 */
+	public double getPositionX() {
+		return positionX;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param positionX the positionX to set
+	 */
+	public void setPositionX(double positionX) {
+		this.positionX = positionX;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the positionY
+	 */
+	public double getPositionY() {
+		return positionY;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param positionY the positionY to set
+	 */
+	public void setPositionY(double positionY) {
+		this.positionY = positionY;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the positionZ
+	 */
+	public double getPositionZ() {
+		return positionZ;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param positionZ the positionZ to set
+	 */
+	public void setPositionZ(double positionZ) {
+		this.positionZ = positionZ;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the radius
+	 */
+	public double getRadius() {
+		return radius;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param radius the radius to set
+	 */
+	public void setRadius(double radius) {
+		this.radius = radius;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the mass
+	 */
+	public double getMass() {
+		return mass;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param mass the mass to set
+	 */
+	public void setMass(double mass) {
+		this.mass = mass;
+	}
+
+	/**
+	 * @author Dexter
+	 * @return the gravityRadius
+	 */
+	public double getGravityRadius() {
+		return gravityRadius;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param gravityRadius the gravityRadius to set
+	 */
+	public void setGravityRadius(double gravityRadius) {
+		this.gravityRadius = gravityRadius;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the distanceFromStar
+	 */
+	public double getDistanceFromStar() {
+		return distanceFromStar;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param distanceFromStar the distanceFromStar to set
+	 */
+	public void setDistanceFromStar(double distanceFromStar) {
+		this.distanceFromStar = distanceFromStar;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the star
+	 */
+	public boolean isStar() {
+		return star;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param isStar the isStar to set
+	 */
+	public void setStar(boolean isStar) {
+		this.star = isStar;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @return the box
+	 */
+	public BoundingBox getBox() {
+		return box;
+	}
+
+	/**
+	 * @author Dexter Parks
+	 * @param box the box to set
+	 */
+	public void setBox(BoundingBox box) {
+		this.box = box;
 	}
 	
 	/**
-	 * @author CharlesWomble
-	 * sets the positions of the Body
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @author Dexter Parks
+	 * @return the velocity
 	 */
-	public void setPosition (double x,double y, double z)
-	{
-		positionX = x;
-		positionY = y;
-		positionZ = z;
+	public Velocity getVelocity() {
+		return velocity;
 	}
-	
+
 	/**
-	 * @author CharlesWomble
-	 * sets radius of Body
-	 * @param rad accepts a radius to set Body radius to 
+	 * @author Dexter Parks
+	 * @param velocity the velocity to set
 	 */
-	public void setRadius(double rad)
-	{
-		radius = rad;
+	public void setVelocity(Velocity velocity) {
+		this.velocity = velocity;
 	}
-	
+
 	/**
 	 * @author CharlesWomble
 	 * gets the distance between two bodies
@@ -214,13 +288,13 @@ public class Body
 	 * @return double that is distance between Bodies
 	 * ??? should this go to another class???
 	 * currently this is static as it is called in the constructor
-	 * of the Body class (to get distancefromstar)
+	 * of the Body class (to get distanceFromStar)
 	 */
 	public static double getDistance(Body tempbody1, Body tempbody2)
 	{
 		double distance;
-		distance = Math.sqrt( Math.pow((tempbody1.getPosition(2) - tempbody1.getPosition(1)), 2.0) +
-				     Math.pow((tempbody2.getPosition(2) - tempbody2.getPosition(1)), 2.0) );
+		distance = Math.sqrt( Math.pow((tempbody1.getPositionY() - tempbody1.getPositionX()), 2.0) +
+				     Math.pow((tempbody2.getPositionY() - tempbody2.getPositionX()), 2.0) );
 		return distance;
 	}
 	
@@ -243,4 +317,3 @@ public class Body
 	}
 	//End of class Body
 }
-
