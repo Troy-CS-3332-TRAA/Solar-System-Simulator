@@ -36,6 +36,11 @@ public class TableWindow extends JPanel {
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
 	}
+
+	public void updateBodies(ArrayList<Body> newSimulation) {
+		bodies = newSimulation;
+		updateTable(bodies);
+	}
 	
 	//-----Getters/Setters-----//
 

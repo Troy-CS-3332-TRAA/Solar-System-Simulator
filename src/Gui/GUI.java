@@ -1,11 +1,13 @@
 package Gui;
 import java.util.ArrayList;
 
+import launcher.Main;
 import Engine.Body;
 
 public class GUI {
     //-----Members-----
 	private DataWindow dataWindow;
+	private ArrayList<Body> bodies;
 	
 	//-----Constructors-----
 	/**
@@ -16,7 +18,6 @@ public class GUI {
 	 */
 	public GUI() {
 		//TODO Implement default constructor
-		dataWindow = new DataWindow("Solar System Data");
 	}
 	/**
 	 * Creates the gui object with two frames. One frame is a window providing a visualization
@@ -25,8 +26,10 @@ public class GUI {
 	 * Nov 6, 2014
 	 * @param bodies The initial ArrayList of body objects that provide the updated data.
 	 */
-	public GUI(ArrayList<Body> bodies) {
-		//TODO Implement constructor
+	public GUI(ArrayList<Body> bodies, Main main) {
+		this.bodies = bodies;
+		dataWindow = new DataWindow("Solar System Data", main, this, bodies);
+		
 	}
 	
 	//-----Methods-----
@@ -40,6 +43,12 @@ public class GUI {
 	boolean step(ArrayList<Body> bodies) {
 		dataWindow.step(bodies);
 		return true;
+	}
+	
+	public void updateBodies(ArrayList<Body> newSimulation) {
+		bodies = newSimulation;
+		dataWindow.updateBodies(bodies);
+		//TODO VisualWindow.updateBodies(bodies);
 	}
 	
 	//-----Utility Methods-----

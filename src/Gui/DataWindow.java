@@ -5,7 +5,9 @@ import java.awt.HeadlessException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+import launcher.Main;
 import Engine.Body;
 
 public class DataWindow extends JFrame {
@@ -20,19 +22,10 @@ public class DataWindow extends JFrame {
 		// TODO Auto-generated constructor stub
 	}
 
-	DataWindow(GraphicsConfiguration gc) {
-		super(gc);
-		// TODO Auto-generated constructor stub
-	}
-
-	DataWindow(String title) throws HeadlessException {
+	DataWindow(String title, Main main, GUI gui, ArrayList<Body> bodies) throws HeadlessException {
 		super(title);
-		// TODO Auto-generated constructor stub
-	}
-
-	DataWindow(String title, GraphicsConfiguration gc) {
-		super(title, gc);
-		// TODO Auto-generated constructor stub
+		initDataWindow(main, gui);
+		this.bodies = bodies;
 	}
 
 	//-----Methods-----//
@@ -41,11 +34,16 @@ public class DataWindow extends JFrame {
 		myWindow.updateTable(this.bodies);
 	}
 	
+	public void updateBodies(ArrayList<Body> newSimulation) {
+		bodies = newSimulation;
+		myWindow.updateBodies(bodies);
+	}
+	
 	//-----Utility Methods-----//
-	protected void initDataWindow() {
+	protected void initDataWindow(Main main, GUI gui) {
 		myWindow = new TableWindow(bodies);
 		this.add(myWindow);
-		myBar = new MenuBar();
+		myBar = new MenuBar(((JPanel) myWindow), main, gui);
 		this.setJMenuBar(myBar.getMenuBar());
 	}
 	

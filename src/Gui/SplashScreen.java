@@ -4,7 +4,6 @@
 package Gui;
 
 import java.awt.HeadlessException;
-import java.awt.Panel;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
@@ -12,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import launcher.Main;
 
 /**
  * @author Dexter
@@ -25,28 +26,29 @@ public class SplashScreen extends JFrame {
 	 * @throws HeadlessException
 	 */
 	public SplashScreen() throws HeadlessException {
-		initSplashScreen();
 	}
 
 	/**
 	 * @author Dexter
 	 * Nov 8, 2014
 	 * @param arg0
+	 * @param main 
 	 * @throws HeadlessException
 	 */
-	public SplashScreen(String arg0) throws HeadlessException {
+	public SplashScreen(String arg0, Main main) throws HeadlessException {
 		super(arg0);
-		initSplashScreen();
+		initSplashScreen(main);
 		this.setVisible(true);
 	}
 	
-	protected void initSplashScreen() {
+	protected void initSplashScreen(Main main) {
 		JPanel panel = new JPanel();
 		JButton newButton = new JButton("New");
 		JButton loadButton = new JButton("Load");
+		SimulationEventNotifier notifier = new SimulationEventNotifier(main);
 		
 		newButton.addActionListener(e -> {
-			//TODO callback method for new simulation
+			notifier.newSimulation();
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		});
 		
@@ -54,7 +56,7 @@ public class SplashScreen extends JFrame {
 			final JFileChooser fc = new JFileChooser();
 			fc.showOpenDialog(this);
 			File selectedFile = fc.getSelectedFile();
-			//TODO callback method for load simulation
+			notifier.loadSimulation(selectedFile);
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		});
 		
