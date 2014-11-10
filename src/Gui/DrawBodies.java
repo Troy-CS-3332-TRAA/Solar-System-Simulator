@@ -41,6 +41,7 @@ public class DrawBodies extends JPanel
 		
 		for (int x = 0; x > bodies.size();x++)
 		{
+			//TODO tweak these coordinates to center the Bodies
 			int a = (int) Math.round(bodies.get(x).getPositionX());
 			int b = (int) Math.round(bodies.get(x).getPositionY());
 			int c = (int) Math.round(bodies.get(x).getRadius());
