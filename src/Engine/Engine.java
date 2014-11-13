@@ -91,34 +91,6 @@ public class Engine {
 	
 	//-----Utility Methods-----
 	
-//	/**
-//	 * @author CharlesWomble
-//	 * @param tempBodyList
-//	 * This method is not needed, as ArrayList contains the method sort which
-//	 * essentially does the same thing, however I will keep this code 
-//	 * for now, eventually we can implement the sort method.
-//	 */
-//	public static void arrangeList (ArrayList<Body> tempBodyList)
-//	{
-//		int numbodies = tempBodyList.size();
-//		/*
-//		 * this code checks the newest added Body with every other
-//		 * Body in BodyList, if it is larger than one
-//		 * it will place the Body in its index and shift every other 
-//		 * Body one position to the right.
-//		 * then it removes the new body from the end of BodyList
-//		 */
-//		for (int x = 0; x > numbodies; x++)
-//		{
-//				int y = numbodies - 1;
-//				if (tempBodyList.get(y).getMass() > bodies.get(x).getMass())
-//				{
-//					bodies.add(x, tempBodyList.get(y));
-//					bodies.remove(y+1);
-//				}
-//		}
-//	}
-	
 	/**
 	 * @author CharlesWomble
 	 * @param tempbody
@@ -128,8 +100,7 @@ public class Engine {
 	{
 		//add new body to BodyList
 		bodies.add(tempbody);
-		//Re-arrange BodyList
-		//arrangeList(bodies);
+		Collections.sort(bodies);
 	}
 	
 	/**
