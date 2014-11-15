@@ -11,7 +11,7 @@ import Gui.GUI;
 public class NewSimulationWorker extends Worker {
 
 	//-----Members-----//
-	Controller controller;
+
 	//-----Constructors-----//
 	/**
 	 * 
@@ -31,7 +31,6 @@ public class NewSimulationWorker extends Worker {
 	 */
 	NewSimulationWorker(Engine engine, GUI gui) {
 		super(engine, gui);
-		this.controller = controller;
 	}
 	
 	//-----Methods-----//
@@ -39,7 +38,6 @@ public class NewSimulationWorker extends Worker {
 	public void run() {
 		engine.newSimulation();
 		gui.updateBodies(engine.getBodies());
-		controller.startSimulationEvent();
 	}
 
 }
