@@ -39,7 +39,7 @@ public class DrawBodies extends JPanel
 		this.setBackground(Color.black);
 		g.setColor(Color.orange);
 		
-		for (int x = 0; x > bodies.size();x++)
+		for (int x = 0; x < bodies.size();x++)
 		{
 			//TODO tweak these coordinates to center the Bodies
 			int a = (int) Math.round(bodies.get(x).getPositionX());
