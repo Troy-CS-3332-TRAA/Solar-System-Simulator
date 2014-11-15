@@ -65,7 +65,7 @@ public class Engine {
 	}
 	
 	/**
-	 * Clears any previously used varibales and initializes them from a given file input.
+	 * Clears any previously used variables and initializes them from a given file input.
 	 * @author Dexter Parks
 	 * Nov 6, 2014
 	 * @return True if success, fail if there was an error.
