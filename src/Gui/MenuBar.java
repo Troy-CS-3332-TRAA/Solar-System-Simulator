@@ -44,7 +44,7 @@ public class MenuBar {
 		menuItem = new JMenuItem("New");
 		menuItem.setMnemonic(KeyEvent.VK_N);
 		menuItem.addActionListener(e -> {
-			gui.updateBodies(notifier.newSimulation());
+			notifier.newSimulation();
 		});
 		file.add(menuItem);
 		
@@ -54,7 +54,7 @@ public class MenuBar {
 			final JFileChooser fc = new JFileChooser();
 			fc.showOpenDialog(panel);
 			File selectedFile = fc.getSelectedFile();
-			gui.updateBodies(notifier.loadSimulation(selectedFile));
+			notifier.loadSimulation(selectedFile);
 		});
 		file.add(menuItem);
 		

@@ -20,12 +20,12 @@ public class SimulationEventNotifier {
 		this.event = event;
 	}
 	
-	public ArrayList<Body> newSimulation() {
-		return event.newSimulationEvent();
+	public void newSimulation() {
+		event.newSimulationEvent();
 	}
 
-	public ArrayList<Body> loadSimulation(File selectedFile) {
-		return event.loadSimulationEvent(selectedFile);
+	public void loadSimulation(File selectedFile) {
+		event.loadSimulationEvent(selectedFile);
 	}
 
 	public void saveSimulation(File selectedFile) {

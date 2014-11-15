@@ -26,26 +26,25 @@ public class Controller implements SimulationEvent {
 	private void initController() {
 		engine = new Engine();
 		gui = new GUI();
-		simulationWorker = new SimulationWorker();
+		simulationWorker = new SimulationWorker(engine, gui);
 	}
 
 	@Override
-	public ArrayList<Body> newSimulationEvent() {
-		newWorker = new NewSimulationWorker();
-		return null;
+	public void newSimulationEvent() {
+		newWorker = new NewSimulationWorker(engine, gui);
+		newWorker.run();
 	}
 
 	@Override
-	public ArrayList<Body> loadSimulationEvent(File selectedFile) {
+	public void loadSimulationEvent(File selectedFile) {
 		// TODO load existing sim-engine and return the bodies list from it
-		loadWorker = new LoadSimulationWorker();
+		loadWorker = new LoadSimulationWorker(engine, gui);
 		loadWorker.run();
-		return null;
 	}
 
 	@Override
 	public void saveSimulationEvent(File selectedFile) {
-		saveWorker = new SaveSimulationWorker();
+		saveWorker = new SaveSimulationWorker(engine, gui);
 		saveWorker.run();
 		
 	}

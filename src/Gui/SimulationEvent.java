@@ -19,7 +19,7 @@ public interface SimulationEvent {
 	 * Nov 8, 2014
 	 * @return 
 	 */
-	public ArrayList<Body> newSimulationEvent();
+	public void newSimulationEvent();
 	
 	/**
 	 * 
@@ -28,7 +28,7 @@ public interface SimulationEvent {
 	 * @param selectedFile 
 	 * @return
 	 */
-	public ArrayList<Body> loadSimulationEvent(File selectedFile);
+	public void loadSimulationEvent(File selectedFile);
 	
 	/**
 	 * 
