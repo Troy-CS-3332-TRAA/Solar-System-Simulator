@@ -37,7 +37,6 @@ public class Controller implements SimulationEvent {
 
 	@Override
 	public void loadSimulationEvent(File selectedFile) {
-		// TODO load existing sim-engine and return the bodies list from it
 		loadWorker = new LoadSimulationWorker(engine, gui);
 		loadWorker.run();
 	}
