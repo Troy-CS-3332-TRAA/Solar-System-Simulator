@@ -12,7 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import launcher.Main;
+import controller.Controller;
 
 /**
  * @author Dexter
@@ -35,17 +35,17 @@ public class SplashScreen extends JFrame {
 	 * @param main 
 	 * @throws HeadlessException
 	 */
-	public SplashScreen(String arg0, Main main) throws HeadlessException {
+	public SplashScreen(String arg0, Controller controller) throws HeadlessException {
 		super(arg0);
-		initSplashScreen(main);
+		initSplashScreen(controller);
 		this.setVisible(true);
 	}
 	
-	protected void initSplashScreen(Main main) {
+	protected void initSplashScreen(Controller controller) {
 		JPanel panel = new JPanel();
 		JButton newButton = new JButton("New");
 		JButton loadButton = new JButton("Load");
-		SimulationEventNotifier notifier = new SimulationEventNotifier(main);
+		SimulationEventNotifier notifier = new SimulationEventNotifier(controller);
 		
 		newButton.addActionListener(e -> {
 			notifier.newSimulation();

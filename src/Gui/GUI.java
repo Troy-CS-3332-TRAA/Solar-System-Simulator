@@ -2,7 +2,7 @@ package Gui;
 
 import java.util.ArrayList;
 
-import launcher.Main;
+import controller.Controller;
 import Engine.Body;
 
 public class GUI {
@@ -27,9 +27,9 @@ public class GUI {
 	 * Nov 6, 2014
 	 * @param bodies The initial ArrayList of body objects that provide the updated data.
 	 */
-	public GUI(ArrayList<Body> bodies, Main main) {
+	public GUI(ArrayList<Body> bodies, Controller controller) {
 		this.bodies = bodies;
-		dataWindow = new DataWindow("Solar System Data", main, this, bodies);
+		dataWindow = new DataWindow("Solar System Data", controller, this, bodies);
 		
 	}
 	
@@ -41,7 +41,7 @@ public class GUI {
 	 * @param bodies The ArrayList of body objects that provide the updated data.
 	 * @return True if there were no errors and false if it failed.
 	 */
-	boolean step(ArrayList<Body> bodies) {
+	public boolean step(ArrayList<Body> bodies) {
 		dataWindow.step(bodies);
 		return true;
 	}

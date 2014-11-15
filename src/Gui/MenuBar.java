@@ -10,7 +10,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import launcher.Main;
+import controller.Controller;
 
 import Engine.Body;
 
@@ -21,15 +21,15 @@ public class MenuBar {
 	//-----Constructors-----//
 	MenuBar() {
 	}
-	MenuBar(JPanel panel, Main main, GUI gui){
-		initJMenu(panel, main, gui);
+	MenuBar(JPanel panel, Controller controller, GUI gui){
+		initJMenu(panel, controller, gui);
 	}
 		
 	//-----Methods-----//
 	
 	//-----Utility Methods-----//
-	protected void initJMenu(JPanel panel, Main main, GUI gui) {
-		SimulationEventNotifier notifier = new SimulationEventNotifier(main);
+	protected void initJMenu(JPanel panel, Controller controller, GUI gui) {
+		SimulationEventNotifier notifier = new SimulationEventNotifier(controller);
 		
 		//MenuBar
 		menuBar = new JMenuBar();

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import launcher.Main;
+import controller.Controller;
 import Engine.Body;
 
 public class DataWindow extends JFrame {
@@ -22,9 +22,9 @@ public class DataWindow extends JFrame {
 		// TODO Auto-generated constructor stub
 	}
 
-	DataWindow(String title, Main main, GUI gui, ArrayList<Body> bodies) throws HeadlessException {
+	DataWindow(String title, Controller controller, GUI gui, ArrayList<Body> bodies) throws HeadlessException {
 		super(title);
-		initDataWindow(main, gui);
+		initDataWindow(controller, gui);
 		this.bodies = bodies;
 	}
 
@@ -40,10 +40,10 @@ public class DataWindow extends JFrame {
 	}
 	
 	//-----Utility Methods-----//
-	protected void initDataWindow(Main main, GUI gui) {
+	protected void initDataWindow(Controller controller, GUI gui) {
 		myWindow = new TableWindow(bodies);
 		this.add(myWindow);
-		myBar = new MenuBar(((JPanel) myWindow), main, gui);
+		myBar = new MenuBar(((JPanel) myWindow), controller, gui);
 		this.setJMenuBar(myBar.getMenuBar());
 	}
 	//-----Getters/Setters-----//

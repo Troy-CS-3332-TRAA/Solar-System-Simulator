@@ -9,22 +9,23 @@ import java.util.List;
 
 public class Engine {
 	
-	//-----Global Members-----/
-	ArrayList<Body> bodies = new ArrayList<Body>();
+	//-----Global Members-----//
+	private ArrayList<Body> bodies = new ArrayList<Body>();
 	
-	//-----Constructors-----/
-	Engine() {
+	//-----Constructors-----//
+	public Engine() {
 		
 	}
 	
-	//-----Main Methods-----/
+	//-----Main Methods-----//
 	/**
 	 * This is method that is called to simulate the next step of the simulation
 	 * @author Dexter Parks
 	 * @version 1.0
+	 * @return 
 	 */
-	public void step() {
-		
+	public ArrayList<Body> step() {
+		return bodies;
 	}
 	
 	/**
@@ -89,7 +90,7 @@ public class Engine {
 		return success;
 	}
 	
-	//-----Utility Methods-----
+	//-----Utility Methods-----//
 	
 	/**
 	 * @author CharlesWomble
@@ -205,10 +206,24 @@ public class Engine {
 			gravityRadius = Double.parseDouble(rowSplit[6]);
 			isStar = Boolean.parseBoolean(rowSplit[7]);
 			velocity = new Velocity(Double.parseDouble(rowSplit[8]));
-			//Constructs abody object and adds it to the ArrayList
+			//Constructs a body object and adds it to the ArrayList
 			bodies.add(new Body(name, positionX, positionY, positionZ, radius, mass, velocity, bodies.get(0)));
 			Collections.sort(bodies);
 		}
 		return !bodies.isEmpty();
+	}
+
+	public void loadDefaultSimulation() {
+		// TODO Create Default Simulation
+		
+	}
+	
+	//-----Getters/Setters-----//
+
+	/**
+	 * @return the bodies
+	 */
+	public ArrayList<Body> getBodies() {
+		return bodies;
 	}
 }
