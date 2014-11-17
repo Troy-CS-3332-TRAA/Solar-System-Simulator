@@ -66,7 +66,7 @@ public class Body implements Comparable<Body>
 		mass             = mas;
 		distanceFromStar = 0.0;
 		star           = true;
-		gravityRadius    = this.getGravity();
+		gravityRadius    = this.getGravity(this);
 	}
 	
 	/**
@@ -89,13 +89,25 @@ public class Body implements Comparable<Body>
 		this.mass        = mass;
 		distanceFromStar = Body.getDistance(this, star);
 		this.star      	     = false;
-		gravityRadius    = this.getGravity();
+		gravityRadius    = this.getGravity(this);
 	}
 	
 	//-----Methods-----//
-	double getGravity() {
+	/**
+	 * @author CharlesWomble
+	 * This method returns the radius of the gravityField of the
+	 * Body. This can be drawn as a circle/Sphere around the Body
+	 * This is mostly aesthetic but can indicate that anything
+	 * that crosses this will be under a great influence of the
+	 * gravity of that Body.
+	 * @param temp the Body to compute the gravityRadius of
+	 * @return gravField, the gravityRadius
+	 */
+	double getGravity(Body temp) {
 		//TODO Implement getGravity()
-		return 0.0;
+		double gravField = (GRAVCONSTANT * temp.getMass()) / Math.pow(temp.getRadius(),2.0);
+		gravField = gravField + (gravField * .1 * temp.getRadius());
+		return gravField;
 	}
 	
 	@Override
@@ -286,7 +298,6 @@ public class Body implements Comparable<Body>
 	 * @param tempbody1 first body in distance formula
 	 * @param tempbody2 second body in distance formula
 	 * @return double that is distance between Bodies
-	 * ??? should this go to another class???
 	 * currently this is static as it is called in the constructor
 	 * of the Body class (to get distanceFromStar)
 	 */
@@ -298,23 +309,6 @@ public class Body implements Comparable<Body>
 		return distance;
 	}
 	
-	/**
-	 * @author CharlesWomble
-	 * This function finds the gravitational attraction between two bodies
-	 * used to help with position calculator
-	 * works by this formula, Force = GRAVCONSTANT * ((mass1 * mass2)/distance squared)
-	 * @param tempbody1
-	 * @param tempbody2
-	 * @return
-	 * ??? should this go to another class???
-	 */
-	public double getGravForce (Body tempbody1, Body tempbody2)
-	{
-		double gravforce;
-		gravforce = GRAVCONSTANT * ((tempbody1.getMass() * tempbody2.getMass())/
-				Math.pow(Body.getDistance(tempbody1, tempbody2), 2.0));
-		return gravforce;
-	}
 	//End of class Body
 }
 

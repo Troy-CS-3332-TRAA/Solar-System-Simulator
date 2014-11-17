@@ -31,10 +31,21 @@ public class PositionCalculator
 		return true;
 	}
 	
-	public double getGravityPull ()
+	/**
+	 * @author CharlesWomble
+	 * This function finds the gravitational attraction between two bodies
+	 * used to help with position calculator
+	 * works by this formula, Force = GRAVCONSTANT * ((mass1 * mass2)/distance squared)
+	 * @param tempbody1
+	 * @param tempbody2
+	 * @return gravForce, the strength of gravity between two Bodies
+	 */
+	public double getGravForce (Body tempbody1, Body tempbody2)
 	{
-		//TODO implement this code
-		return 1.0;
+		double gravForce;
+		gravForce = Body.GRAVCONSTANT * ((tempbody1.getMass() * tempbody2.getMass())/
+				Math.pow(Body.getDistance(tempbody1, tempbody2), 2.0));
+		return gravForce;
 	}
 	
 	
