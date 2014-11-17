@@ -1,5 +1,7 @@
 package Engine;
 
+import java.util.ArrayList;
+
 
 /**
  * @author CharlesWomble
@@ -8,25 +10,23 @@ package Engine;
  */
 public class PositionCalculator 
 {
-
-	//-----Members-----//
-	Body temp;
-	
-	
-	
-	//-----Method-----//
-	
-	
-	public boolean setNewPosition(Body tempbody)
+	/**
+	 * @author CharlesWomble
+	 * This method moves the Body to it's new position, it moves to the coordinates in its
+	 * velocity vector minus the force of gravity on the object, this should cause the Body
+	 * to orbit.Need to implement some action in case of collision
+	 * @param child the Body to move
+	 * @param mother the Body that the movement is relative to
+	 * @param bodies the ArrayList of bodies, needed to check for collision
+	 * @return true if no collision detected, false if collision detected
+	 */
+	public boolean setNewPosition(Body child, Body mother, ArrayList<Body> bodies )
 	{
-		//members//
-		double[]oldposition = new double[]{0.0,0.0,0.0};
-		
-		oldposition[0] = tempbody.getPositionX();
-		oldposition[1] = tempbody.getPositionY();
-		oldposition[2] = tempbody.getPositionZ();
-		
-		//velocity? 
+		child.setPositionX(child.velocity.getVelocityX() - getGravForce(child, mother));
+		child.setPositionY(child.velocity.getVelocityY() - getGravForce(child, mother));
+		if (CollisionDetector.detectCollision(child, bodies))
+			return false;
+		child.velocity.updateVelocity(child, mother);
 		
 		return true;
 	}

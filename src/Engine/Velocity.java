@@ -14,10 +14,31 @@ public class Velocity
 	double velocityZ;
 	double speed;			//not used yet
 	double orbitalVelocity; //this will be calculated //not used yet
+	
+	/**
+	 * @author CharlesWomble
+	 * just a default constructor that doesn't do anything
+	 */
 	Velocity()
 	{
 		velocityX = 0.0;
 		velocityY = 0.0;
+		velocityZ = 0.0;
+		speed = 0.0;
+		orbitalVelocity = 0.0;
+	}
+	
+	/**
+	 * @author CharlesWomble
+	 * This is a constructor for the 2D simulations, as such it only accepts
+	 * params for x and y velocity vectors
+	 * @param posX x velocity position
+	 * @param posY y velocity position
+	 */
+	Velocity(double posX, double posY)
+	{
+		velocityX = posX;
+		velocityY = posY;
 		velocityZ = 0.0;
 		speed = 0.0;
 		orbitalVelocity = 0.0;
