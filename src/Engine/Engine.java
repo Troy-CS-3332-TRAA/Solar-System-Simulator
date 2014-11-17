@@ -142,12 +142,17 @@ public class Engine {
 			writer.append(',');
 			writer.append(Double.toString(bodies.get(x).getMass()));
 			writer.append(',');
-			writer.append(Double.toString(bodies.get(x).getGravity()));
+			writer.append(Double.toString(bodies.get(x).getDistanceFromStar()));
 			writer.append(',');
 			writer.append(Boolean.toString(bodies.get(x).isStar()));
 			writer.append(',');
-			//TODO implement load/save of Velocity Object
-			writer.append(Double.toString(bodies.get(x).getVelocity()));
+			writer.append(Double.toString(bodies.get(x).getGravity(bodies.get(x))));
+			writer.append(',');
+			writer.append(Double.toString(bodies.get(x).velocity.getVelocityX()));
+			writer.append(',');
+			writer.append(Double.toString(bodies.get(x).velocity.getVelocityY()));
+			writer.append(',');
+			writer.append(Double.toString(bodies.get(x).velocity.getVelocityZ()));
 			writer.append('\n');
 			writer.flush();
 			}

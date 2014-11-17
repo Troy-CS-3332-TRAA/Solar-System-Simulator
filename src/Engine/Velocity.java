@@ -12,8 +12,8 @@ public class Velocity
 	double velocityX;
 	double velocityY;
 	double velocityZ;
-	double speed;
-	double orbitalVelocity; //this will be calculated
+	double speed;			//not used yet
+	double orbitalVelocity; //this will be calculated //not used yet
 	Velocity()
 	{
 		velocityX = 0.0;
