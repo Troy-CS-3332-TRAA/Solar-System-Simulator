@@ -184,15 +184,16 @@ public class Engine {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
-		}
+		}//name x y z getRadius Mass DistanceFromStar isStar getGravity VX VY VZ
 		String name;
 		double positionX;
 		double positionY;
 		double positionZ;
 		double radius;                                       // double * 10^6
 		double mass;                                         // double * 10^21
-		double gravityRadius;                                // double * 10^6
+		double distanceFromStar;                                // double * 10^6
 		boolean isStar;
+		double gravity;
 		Velocity velocity;
 		for(String row : list) {
 			//Splits the line by use the comma as a delimiter, then parses them to the correct datatype
@@ -203,11 +204,16 @@ public class Engine {
 			positionZ = Double.parseDouble(rowSplit[3]);
 			radius = Double.parseDouble(rowSplit[4]);
 			mass = Double.parseDouble(rowSplit[5]);
-			gravityRadius = Double.parseDouble(rowSplit[6]);
+			distanceFromStar = Double.parseDouble(rowSplit[6]);
 			isStar = Boolean.parseBoolean(rowSplit[7]);
-			velocity = new Velocity(Double.parseDouble(rowSplit[8]));
+			gravity = Double.parseDouble(rowSplit[8]);
+			velocity = new Velocity(Double.parseDouble(rowSplit[9]), Double.parseDouble(rowSplit[10]), Double.parseDouble(rowSplit[11]));
 			//Constructs a body object and adds it to the ArrayList
-			bodies.add(new Body(name, positionX, positionY, positionZ, radius, mass, velocity, bodies.get(0)));
+			if(bodies.size() == 0) {
+				bodies.add(new Body(name, radius, mass));
+			} else {
+				bodies.add(new Body(name, positionX, positionY, positionZ, radius, mass, distanceFromStar, isStar, gravity, velocity));
+			}
 			Collections.sort(bodies);
 		}
 		return !bodies.isEmpty();

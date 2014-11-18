@@ -88,10 +88,41 @@ public class Body implements Comparable<Body>
 		radius           = rad;
 		this.mass        = mass;
 		distanceFromStar = Body.getDistance(this, star);
-		this.star      	     = false;
+		this.star      	 = false;
 		gravityRadius    = this.getGravity(this);
 	}
 	
+	/**
+	 * This constructor is primarily used during loading from a file.
+	 * @author Dexter Parks
+	 * Nov 17, 2014
+	 * @param name
+	 * @param positionX
+	 * @param positionY
+	 * @param positionZ
+	 * @param radius
+	 * @param mass
+	 * @param distanceFromStar
+	 * @param isStar
+	 * @param gravity
+	 * @param velocity
+	 */
+	public Body(String name, double positionX, double positionY,
+			double positionZ, double radius, double mass,
+			double distanceFromStar, boolean isStar, double gravity,
+			Velocity velocity) {
+		this.name = name;
+		this.positionX = positionX;
+		this.positionX = positionY;
+		this.positionZ = positionZ;
+		this.radius = radius;
+		this.mass = mass;
+		this.distanceFromStar = distanceFromStar;
+		this.star = isStar;
+		this.gravityRadius = gravity;
+		this.velocity = velocity;
+	}
+
 	//-----Methods-----//
 	/**
 	 * @author CharlesWomble

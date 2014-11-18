@@ -55,6 +55,20 @@ public class Velocity
 	}
 	
 	/**
+	 * This constructor is primarily used during a loadState()
+	 * @author Dexter Parks
+	 * Nov 17, 2014
+	 * @param vX
+	 * @param vY
+	 * @param vZ
+	 */
+	public Velocity(double vX, double vY, double vZ) {
+		velocityX = vX;
+		velocityY = vY;
+		velocityZ = vZ;
+	}
+
+	/**
 	 * @author CharlesWomble
 	 * @return the velocityX
 	 */
