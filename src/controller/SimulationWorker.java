@@ -10,7 +10,7 @@ import Engine.Engine;
 import Gui.GUI;
 
 /**
- * @author Dexter
+ * @author Dexter Parks
  *
  */
 public class SimulationWorker extends Worker {
@@ -31,8 +31,9 @@ public class SimulationWorker extends Worker {
 	
 	void simulate() {
 		while(!paused && !crashed) {
-			//TODO Error detection, crash detection
-			bodies = engine.step();
+			engine.step();
+			crashed = engine.getCollision();
+			bodies = engine.getBodies();
 			gui.step(bodies);
 		}
 	}

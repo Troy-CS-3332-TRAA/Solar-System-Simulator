@@ -3,11 +3,11 @@ package Engine;
 public class BoundingBox {
 
 	//-----Members-----
-	float width;
-	float height;
+	double width;
+	double height;
 	
-	float positionX;
-	float positionY;
+	double positionX;
+	double positionY;
 	
 	
 	//-----Constructors-----
@@ -28,7 +28,7 @@ public class BoundingBox {
 	 * @param width
 	 * @param height
 	 */
-	BoundingBox(float positionX, float positionY, float width, float height) {
+	BoundingBox(double positionX, double positionY, double width, double height) {
 		this.width = width;
 		this.height = height;
 		this.positionX = positionX;
@@ -43,7 +43,7 @@ public class BoundingBox {
 	 * @param positionX
 	 * @param positionY
 	 */
-	public void updatePosition(float positionX, float positionY) {
+	public void updatePosition(double positionX, double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
 	}
@@ -105,56 +105,56 @@ public class BoundingBox {
 	/**
 	 * @return the width
 	 */
-	public float getWidth() {
+	public double getWidth() {
 		return width;
 	}
 
 	/**
 	 * @param width the width to set
 	 */
-	public void setWidth(float width) {
+	public void setWidth(double width) {
 		this.width = width;
 	}
 
 	/**
 	 * @return the height
 	 */
-	public float getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
 	/**
 	 * @param height the height to set
 	 */
-	public void setHeight(float height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 
 	/**
 	 * @return the positionX
 	 */
-	public float getXPosition() {
+	public double getXPosition() {
 		return positionX;
 	}
 
 	/**
 	 * @param positionX the positionX to set
 	 */
-	public void setXPosition(float positionX) {
+	public void setXPosition(double positionX) {
 		this.positionX = positionX;
 	}
 
 	/**
 	 * @return the positionY
 	 */
-	public float getYPosition() {
+	public double getYPosition() {
 		return positionY;
 	}
 
 	/**
 	 * @param positionY the positionY to set
 	 */
-	public void setYPosition(float positionY) {
+	public void setYPosition(double positionY) {
 		this.positionY = positionY;
 	}
 	

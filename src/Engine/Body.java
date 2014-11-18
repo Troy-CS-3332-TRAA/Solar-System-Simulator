@@ -38,15 +38,17 @@ public class Body implements Comparable<Body>
 	 */
 	Body ()
 	{
-		name             = "Default name";
-		positionX        = 0.0;
-		positionY        = 0.0;
-		positionZ        = 0.0;
-		radius           = 0.0; // measured in 10 ^ 6  km
-		mass             = 0.0; // measured in 10 ^ 21 kg
-		gravityRadius    = 0.0; // measured in 10 ^ 6  km
-		distanceFromStar = 0.0; // measured in 10 ^ 6  km
-		star           = true;
+		name				= "Default name";
+		positionX			= 0.0;
+		positionY			= 0.0;
+		positionZ			= 0.0;
+		radius			 	= 0.0; // measured in 10 ^ 6  km
+		mass				= 0.0; // measured in 10 ^ 21 kg
+		gravityRadius		= 0.0; // measured in 10 ^ 6  km
+		distanceFromStar	= 0.0; // measured in 10 ^ 6  km
+		star          		= true;
+		//Subtract radius to offset from middle to top-left corner
+		box					= new BoundingBox(positionX - radius, positionY - radius, radius, radius);
 	}
 	
 	/**
@@ -67,6 +69,8 @@ public class Body implements Comparable<Body>
 		distanceFromStar = 0.0;
 		star           = true;
 		gravityRadius    = this.getGravity(this);
+		//Subtract radius to offset from middle to top-left corner
+		box					= new BoundingBox(positionX - radius, positionY - radius, radius, radius);
 	}
 	
 	/**
@@ -81,15 +85,17 @@ public class Body implements Comparable<Body>
 	 */
 	Body (String nam, double posX, double posY, double posZ, double rad, double mass, Velocity velocity2, Body star)
 	{
-		name             = nam;
-		positionX        = posX;
-		positionY        = posY;
-		positionZ        = posZ;
-		radius           = rad;
-		this.mass        = mass;
-		distanceFromStar = Body.getDistance(this, star);
-		this.star      	 = false;
-		gravityRadius    = this.getGravity(this);
+		name             	= nam;
+		positionX        	= posX;
+		positionY        	= posY;
+		positionZ        	= posZ;
+		radius				= rad;
+		this.mass			= mass;
+		distanceFromStar	= Body.getDistance(this, star);
+		this.star			= false;
+		gravityRadius		= this.getGravity(this);
+		//Subtract radius to offset from middle to top-left corner
+		box					= new BoundingBox(positionX - radius, positionY - radius, radius, radius);
 	}
 	
 	/**
@@ -121,6 +127,8 @@ public class Body implements Comparable<Body>
 		this.star = isStar;
 		this.gravityRadius = gravity;
 		this.velocity = velocity;
+		//Subtract radius to offset from middle to top-left corner
+		box = new BoundingBox(positionX - radius, positionY - radius, radius, radius);
 	}
 
 	//-----Methods-----//
