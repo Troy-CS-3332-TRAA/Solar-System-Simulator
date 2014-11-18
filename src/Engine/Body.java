@@ -150,7 +150,7 @@ public class Body implements Comparable<Body>
 	
 	@Override
 	public int compareTo(Body b) {
-		return new Double(mass).compareTo(b.getMass());
+		return new Double(mass).compareTo(b.getMass()) * -1;
 	}
 	
 	//-----Getters/Setters-----//
