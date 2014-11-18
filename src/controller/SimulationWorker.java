@@ -32,7 +32,6 @@ public class SimulationWorker extends Worker {
 			crashed = engine.getCollision();
 			bodies = engine.getBodies();
 			gui.step(bodies);
-			crashed = true;
 		}
 	}
 	
