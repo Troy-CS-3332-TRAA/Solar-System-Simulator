@@ -24,8 +24,10 @@ public class PositionCalculator
 	{
 		child.setPositionX(child.velocity.getVelocityX() - getGravForce(child, mother));
 		child.setPositionY(child.velocity.getVelocityY() - getGravForce(child, mother));
-		if (CollisionDetector.detectCollision(child, bodies))
-			return false;
+		for(Body body : bodies) {
+			if (BoundingBox.isIntersecting(child.getBox(), body.getBox()))
+				return false;
+		}
 		child.velocity.updateVelocity(child, mother);
 		
 		return true;
