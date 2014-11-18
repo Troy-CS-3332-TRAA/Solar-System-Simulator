@@ -29,6 +29,7 @@ public class TableWindow extends JPanel {
 	public void updateTable(ArrayList<Body> bodies) {
 		this.bodies = bodies;
 		((BodyTableModel) table.getModel()).setBodies(bodies).fireTableDataChanged();
+		this.repaint();
 	}
 	//-----Utility Methods-----//
 	protected void initTableWindow() {

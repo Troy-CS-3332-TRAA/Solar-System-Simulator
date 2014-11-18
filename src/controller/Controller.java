@@ -32,27 +32,27 @@ public class Controller implements SimulationEvent {
 	@Override
 	public void newSimulationEvent() {
 		newWorker = new NewSimulationWorker(engine, gui);
-		newWorker.run();
+		new Thread(newWorker).start();
 	}
 
 	@Override
 	public void loadSimulationEvent(File selectedFile) {
 		loadWorker = new LoadSimulationWorker(engine, gui);
 		loadWorker.setInputFile(selectedFile);
-		loadWorker.run();
+		new Thread(loadWorker).start();
 	}
 
 	@Override
 	public void saveSimulationEvent(File selectedFile) {
 		saveWorker = new SaveSimulationWorker(engine, gui);
-		saveWorker.run();
+		new Thread(saveWorker).start();
 		
 	}
 
 	@Override
 	public void startSimulationEvent() {
 		simulationWorker.setPaused(false);
-		simulationWorker.run();
+		new Thread(simulationWorker).start();
 	}
 
 	@Override

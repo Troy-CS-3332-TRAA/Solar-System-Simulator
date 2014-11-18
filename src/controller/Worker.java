@@ -29,13 +29,4 @@ public abstract class Worker implements Runnable {
 		this.engine = engine;
 		this.gui = gui;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Runnable#run()
-	 */
-	@Override
-	public void run() {
-
-	}
-
 }

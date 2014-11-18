@@ -3,9 +3,6 @@
  */
 package controller;
 
-import java.util.ArrayList;
-
-import Engine.Body;
 import Engine.Engine;
 import Gui.GUI;
 
@@ -13,7 +10,7 @@ import Gui.GUI;
  * @author Dexter Parks
  *
  */
-public class SimulationWorker extends Worker {
+public class SimulationWorker extends Worker implements Runnable {
 
 	private Boolean paused;
 	private Boolean crashed;
@@ -35,6 +32,7 @@ public class SimulationWorker extends Worker {
 			crashed = engine.getCollision();
 			bodies = engine.getBodies();
 			gui.step(bodies);
+			crashed = true;
 		}
 	}
 	
