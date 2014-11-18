@@ -25,7 +25,7 @@ public class Controller implements SimulationEvent {
 
 	private void initController() {
 		engine = new Engine();
-		gui = new GUI();
+		gui = new GUI(this);
 		simulationWorker = new SimulationWorker(engine, gui);
 	}
 

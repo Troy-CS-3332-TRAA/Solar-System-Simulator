@@ -32,7 +32,7 @@ public class LoadSimulationWorker extends Worker {
 	@Override
 	public void run() {
 		engine.loadSimulation(inputFile);
-		gui.updateBodies(engine.getBodies());
+		gui.initWindows(engine.getBodies());
 	}
 	
 	//-----Getters/Setters-----//

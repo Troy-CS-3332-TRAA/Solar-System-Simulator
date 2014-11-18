@@ -1,14 +1,17 @@
 package Gui;
-
 import java.util.ArrayList;
 
 import controller.Controller;
+
 import Engine.Body;
 
 public class GUI {
     //-----Members-----
 	private DataWindow dataWindow;
+	private VisualWindow visualWindow;
 	private ArrayList<Body> bodies;
+	private static final String DATAWINDOWTITLE = "Solar System Data";
+	private static final String VISUALWINDOWTITLE = "Solar System GFX";
 	
 	//-----Constructors-----
 	/**
@@ -18,7 +21,11 @@ public class GUI {
 	 * Nov 6, 2014
 	 */
 	public GUI() {
-		//TODO Implement default constructor
+	}
+	
+	public GUI(Controller controller) {
+		dataWindow = new DataWindow(DATAWINDOWTITLE, controller, this);
+		visualWindow = new VisualWindow(VISUALWINDOWTITLE);
 	}
 	/**
 	 * Creates the gui object with two frames. One frame is a window providing a visualization
@@ -29,8 +36,8 @@ public class GUI {
 	 */
 	public GUI(ArrayList<Body> bodies, Controller controller) {
 		this.bodies = bodies;
-		dataWindow = new DataWindow("Solar System Data", controller, this, bodies);
-		
+		dataWindow = new DataWindow(DATAWINDOWTITLE, controller, this, bodies);
+		visualWindow = new VisualWindow(VISUALWINDOWTITLE);
 	}
 	
 	//-----Methods-----
@@ -43,17 +50,24 @@ public class GUI {
 	 */
 	public boolean step(ArrayList<Body> bodies) {
 		dataWindow.step(bodies);
+		visualWindow.step(bodies);
 		return true;
 	}
 	
 	public void updateBodies(ArrayList<Body> newSimulation) {
 		bodies = newSimulation;
 		dataWindow.updateBodies(bodies);
-		//TODO VisualWindow.updateBodies(bodies);
+		//VisualWindow.updateBodies(bodies);
+	}
+
+	public void initWindows(ArrayList<Body> bodies) {
+		this.bodies = bodies;
+		dataWindow.initializeDataWindow(bodies);
+		visualWindow.initVisualWindow(bodies);
+		
 	}
 	
 	//-----Utility Methods-----
 	
 	//-----Getters/Setters-----
 }
-

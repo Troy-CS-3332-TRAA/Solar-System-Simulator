@@ -16,15 +16,26 @@ public class DataWindow extends JFrame {
 	private TableWindow myWindow;
 	private MenuBar myBar;
 	private ArrayList<Body> bodies;
+	private Boolean initialized;
+	private Controller controller;
+	private GUI gui;
 	
 	//-----Constructors-----//
-	DataWindow() throws HeadlessException {
+	DataWindow() {
 	}
 
+	public DataWindow(String dataWindowTitle, Controller controller, GUI gui) {
+		super(dataWindowTitle);
+		initialized = false;
+	}
+	
 	DataWindow(String title, Controller controller, GUI gui, ArrayList<Body> bodies) throws HeadlessException {
 		super(title);
 		initDataWindow(controller, gui);
 		this.bodies = bodies;
+		this.controller = controller;
+		this.gui = gui;
+		initialized = true;
 	}
 
 	//-----Methods-----//
@@ -38,6 +49,13 @@ public class DataWindow extends JFrame {
 		myWindow.updateBodies(bodies);
 	}
 	
+	public void initializeDataWindow(ArrayList<Body> bodies) {
+		this.bodies = bodies;
+		this.controller = controller;
+		this.gui = gui;
+		initDataWindow(controller, gui);
+		
+	}
 	//-----Utility Methods-----//
 	protected void initDataWindow(Controller controller, GUI gui) {
 		myWindow = new TableWindow(bodies);
@@ -46,4 +64,11 @@ public class DataWindow extends JFrame {
 		this.setJMenuBar(myBar.getMenuBar());
 	}
 	//-----Getters/Setters-----//
+
+	/**
+	 * @return true if it was constructed with a bodies list
+	 */
+	public Boolean isInitialized() {
+		return initialized;
+	}
 }
