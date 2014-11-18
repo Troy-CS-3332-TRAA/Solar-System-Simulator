@@ -15,7 +15,6 @@ public class BodyTableModel extends AbstractTableModel {
 	
 	//-----Constructors-----//
 	BodyTableModel() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	BodyTableModel(ArrayList<Body> bodies) {
