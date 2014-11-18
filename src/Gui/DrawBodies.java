@@ -50,4 +50,7 @@ public class DrawBodies extends JPanel
 			//TODO draw gravity radius/ make window resizable
 		}
 	}
+	void setBodies(ArrayList<Body> bodies){
+		this.bodies = bodies;
+	}
 }
