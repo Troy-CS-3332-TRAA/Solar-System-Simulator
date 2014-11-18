@@ -10,7 +10,7 @@ import Gui.GUI;
  * @author Dexter Parks
  *
  */
-public class SimulationWorker extends Worker implements Runnable {
+public class SimulationWorker extends Worker {
 
 	private Boolean paused;
 	private Boolean crashed;
