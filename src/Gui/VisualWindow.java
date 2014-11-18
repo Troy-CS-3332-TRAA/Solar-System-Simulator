@@ -1,4 +1,5 @@
 package Gui;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -29,7 +30,8 @@ public class VisualWindow extends JFrame{
 		 dB = new DrawBodies(bodies);
 		 this.add(dB);
 		 this.getContentPane().add(dB);
-		 this.setVisible(true);
+		 this.setPreferredSize(new Dimension(500,500));
+		// this.setVisible(true);
 	 }
 	 /*
 	  * Default constructor lacking bodies information.
@@ -38,6 +40,7 @@ public class VisualWindow extends JFrame{
 		 super(title);
 		 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		 this.getContentPane().add(new MouseScroll().createScroll());
+		 this.setPreferredSize(new Dimension(500,500));
 		 this.setVisible(true);
 	 }
 	 /*

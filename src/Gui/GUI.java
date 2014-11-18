@@ -64,6 +64,10 @@ public class GUI {
 		this.bodies = bodies;
 		dataWindow.initializeDataWindow(bodies);
 		visualWindow.initVisualWindow(bodies);
+		dataWindow.pack();
+		visualWindow.pack();
+		dataWindow.setVisible(true);
+		visualWindow.setVisible(true);
 		
 	}
 	

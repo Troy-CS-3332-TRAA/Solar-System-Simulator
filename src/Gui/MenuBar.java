@@ -18,6 +18,7 @@ public class MenuBar {
 
 	//-----Members-----//
 	JMenuBar menuBar;
+	SimulationEventNotifier notifier;
 	//-----Constructors-----//
 	MenuBar() {
 	}
@@ -29,7 +30,7 @@ public class MenuBar {
 	
 	//-----Utility Methods-----//
 	protected void initJMenu(JPanel panel, Controller controller, GUI gui) {
-		SimulationEventNotifier notifier = new SimulationEventNotifier(controller);
+		notifier = new SimulationEventNotifier(controller);
 		
 		//MenuBar
 		menuBar = new JMenuBar();

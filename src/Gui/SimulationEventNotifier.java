@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import Engine.Body;
 
 /**
- * @author Dexter
+ * @author Dexter Parks
  *
  */
 public class SimulationEventNotifier {
 	
-	SimulationEvent event;
+	private SimulationEvent event;
 	
 	SimulationEventNotifier(SimulationEvent event) {
 		this.event = event;
@@ -40,9 +40,9 @@ public class SimulationEventNotifier {
 	public void pauseSimulation() {
 		event.pauseSimulationEvent();
 	}
+	
 	public void stopSimulation() {
 		event.stopSimulationEvent();
 		
 	}
-
 }

@@ -3,6 +3,7 @@
  */
 package Gui;
 
+import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -63,6 +64,7 @@ public class SplashScreen extends JFrame {
 		panel.add(newButton);
 		panel.add(loadButton);
 		this.add(panel);
+		this.setPreferredSize(new Dimension(200,75));
 		this.pack();
 	}
 

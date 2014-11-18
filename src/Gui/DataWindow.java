@@ -1,14 +1,14 @@
 package Gui;
 
-import java.awt.GraphicsConfiguration;
+import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controller.Controller;
 import Engine.Body;
+import controller.Controller;
 
 public class DataWindow extends JFrame {
 
@@ -26,6 +26,8 @@ public class DataWindow extends JFrame {
 
 	public DataWindow(String dataWindowTitle, Controller controller, GUI gui) {
 		super(dataWindowTitle);
+		this.controller = controller;
+		this.gui = gui;
 		initialized = false;
 	}
 	
@@ -62,6 +64,7 @@ public class DataWindow extends JFrame {
 		this.add(myWindow);
 		myBar = new MenuBar(((JPanel) myWindow), controller, gui);
 		this.setJMenuBar(myBar.getMenuBar());
+		this.setPreferredSize(new Dimension(500,500));
 	}
 	//-----Getters/Setters-----//
 
