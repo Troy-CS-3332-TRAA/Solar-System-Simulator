@@ -13,7 +13,7 @@ import controller.Controller;
 public class DataWindow extends JFrame {
 
 	//-----Members-----//
-	private TableWindow myWindow;
+	private TableWindow tableWindow;
 	private MenuBar myBar;
 	private ArrayList<Body> bodies;
 	private Boolean initialized;
@@ -43,12 +43,12 @@ public class DataWindow extends JFrame {
 	//-----Methods-----//
 	void step(ArrayList<Body> bodies) {
 		this.bodies = bodies;
-		myWindow.updateTable(this.bodies);
+		tableWindow.updateTable(this.bodies);
 	}
 	
 	public void updateBodies(ArrayList<Body> newSimulation) {
 		bodies = newSimulation;
-		myWindow.updateBodies(bodies);
+		tableWindow.updateBodies(bodies);
 	}
 	
 	public void initializeDataWindow(ArrayList<Body> bodies) {
@@ -60,9 +60,9 @@ public class DataWindow extends JFrame {
 	}
 	//-----Utility Methods-----//
 	protected void initDataWindow(Controller controller, GUI gui) {
-		myWindow = new TableWindow(bodies);
-		this.add(myWindow);
-		myBar = new MenuBar(((JPanel) myWindow), controller, gui);
+		tableWindow = new TableWindow(bodies);
+		this.add(tableWindow);
+		myBar = new MenuBar(((JPanel) tableWindow), controller, gui);
 		this.setJMenuBar(myBar.getMenuBar());
 		this.setPreferredSize(new Dimension(500,500));
 	}
