@@ -20,7 +20,7 @@ public class PositionCalculator
 	 * @param bodies the ArrayList of bodies, needed to check for collision
 	 * @return true if no collision detected, false if collision detected
 	 */
-	public boolean setNewPosition(Body child, Body mother, ArrayList<Body> bodies )
+	public static boolean setNewPosition(Body child, Body mother, ArrayList<Body> bodies )
 	{
 		child.setPositionX(child.velocity.getVelocityX() - getGravForce(child, mother));
 		child.setPositionY(child.velocity.getVelocityY() - getGravForce(child, mother));
@@ -40,7 +40,7 @@ public class PositionCalculator
 	 * @param tempbody2
 	 * @return gravForce, the strength of gravity between two Bodies
 	 */
-	public double getGravForce (Body tempbody1, Body tempbody2)
+	public static double getGravForce (Body tempbody1, Body tempbody2)
 	{
 		double gravForce;
 		gravForce = Body.GRAVCONSTANT * ((tempbody1.getMass() * tempbody2.getMass())/

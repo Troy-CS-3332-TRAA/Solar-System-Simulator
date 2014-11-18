@@ -11,6 +11,7 @@ public class Engine {
 	
 	//-----Global Members-----//
 	private ArrayList<Body> bodies = new ArrayList<Body>();
+	private Boolean collision;
 	
 	//-----Constructors-----//
 	public Engine() {
@@ -25,6 +26,8 @@ public class Engine {
 	 * @return 
 	 */
 	public ArrayList<Body> step() {
+		calculatePositions();
+		//detectCollisions();
 		return bodies;
 	}
 	
@@ -47,10 +50,14 @@ public class Engine {
 	 * @version 1.0
 	 * @return
 	 */
-	boolean calculatePositions() 
+	void calculatePositions() 
 	{
-		//TODO Implement position calculator
-		return true;
+		for(Body body : bodies) {
+			if(body.isStar()) {
+			} else {
+				collision = PositionCalculator.setNewPosition(body, bodies.get(0), bodies);
+			}
+		}
 	}
 	
 	/**
@@ -162,7 +169,6 @@ public class Engine {
 		} 
 		catch (IOException e) 
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		return false;
@@ -231,5 +237,19 @@ public class Engine {
 	 */
 	public ArrayList<Body> getBodies() {
 		return bodies;
+	}
+
+	/**
+	 * @return the collision
+	 */
+	public Boolean getCollision() {
+		return collision;
+	}
+
+	/**
+	 * @param collision the collision to set
+	 */
+	public void setCollision(Boolean collision) {
+		this.collision = collision;
 	}
 }

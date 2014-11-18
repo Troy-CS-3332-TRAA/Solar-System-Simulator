@@ -135,7 +135,6 @@ public class Body implements Comparable<Body>
 	 * @return gravField, the gravityRadius
 	 */
 	double getGravity(Body temp) {
-		//TODO Implement getGravity()
 		double gravField = (GRAVCONSTANT * temp.getMass()) / Math.pow(temp.getRadius(),2.0);
 		gravField = gravField + (gravField * .1 * temp.getRadius());
 		return gravField;

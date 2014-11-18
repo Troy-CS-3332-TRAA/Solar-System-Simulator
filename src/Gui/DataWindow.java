@@ -19,7 +19,6 @@ public class DataWindow extends JFrame {
 	
 	//-----Constructors-----//
 	DataWindow() throws HeadlessException {
-		// TODO Auto-generated constructor stub
 	}
 
 	DataWindow(String title, Controller controller, GUI gui, ArrayList<Body> bodies) throws HeadlessException {
