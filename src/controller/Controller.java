@@ -38,6 +38,7 @@ public class Controller implements SimulationEvent {
 	@Override
 	public void loadSimulationEvent(File selectedFile) {
 		loadWorker = new LoadSimulationWorker(engine, gui);
+		loadWorker.setInputFile(selectedFile);
 		loadWorker.run();
 	}
 

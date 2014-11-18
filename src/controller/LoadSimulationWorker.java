@@ -34,7 +34,12 @@ public class LoadSimulationWorker extends Worker {
 		engine.loadSimulation(inputFile);
 		gui.initWindows(engine.getBodies());
 	}
-	
-	//-----Getters/Setters-----//
 
+	//-----Getters/Setters-----//
+	/**
+	 * @param inputFile the inputFile to set
+	 */
+	public void setInputFile(File inputFile) {
+		this.inputFile = inputFile;
+	}
 }
