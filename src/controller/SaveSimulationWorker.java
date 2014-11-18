@@ -19,7 +19,7 @@ public class SaveSimulationWorker extends Worker {
 	
 	//-----Constructors-----//
 	SaveSimulationWorker() {
-		
+		super();
 	}
 	
 	SaveSimulationWorker(Engine engine, GUI gui) {

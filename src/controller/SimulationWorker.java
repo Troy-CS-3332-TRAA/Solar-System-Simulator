@@ -20,7 +20,7 @@ public class SimulationWorker extends Worker {
 	
 	
 	SimulationWorker() {
-		
+		super();
 	}
 	
 	SimulationWorker(Engine engine, GUI gui) {

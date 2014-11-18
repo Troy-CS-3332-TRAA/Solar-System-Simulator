@@ -13,7 +13,7 @@ import Gui.GUI;
  * @author Dexter
  *
  */
-public class Worker implements Runnable {
+public abstract class Worker implements Runnable {
 	
 	
 	//-----Members-----/

@@ -19,7 +19,7 @@ public class NewSimulationWorker extends Worker {
 	 * Nov 14, 2014
 	 */
 	NewSimulationWorker() {
-		
+		super();
 	}
 	
 	/**
