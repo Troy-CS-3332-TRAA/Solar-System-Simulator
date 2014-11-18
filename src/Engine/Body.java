@@ -258,6 +258,18 @@ public class Body implements Comparable<Body>
 	public void setGravityRadius(double gravityRadius) {
 		this.gravityRadius = gravityRadius;
 	}
+	
+	/**@author CharlesWomble
+	 * This method computes the GravityRadius of the Body
+	 * The formula is gravityStrength * Radius, can be tweaked if necessary
+	 * as this is mostly aesthetic
+	 * @param tempBody
+	 */
+	public void computeGravityRadius(Body tempBody)
+	{
+		//TODO test to see if this works or should be tweaked
+		tempBody.setGravityRadius(tempBody.getGravity(this) * tempBody.getRadius());
+	}
 
 	/**
 	 * @author Dexter Parks
