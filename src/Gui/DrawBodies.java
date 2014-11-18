@@ -2,8 +2,10 @@ package Gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import Engine.Body;
+
 import javax.swing.JPanel;
+
+import Engine.Body;
 
 public class DrawBodies extends JPanel
 {
