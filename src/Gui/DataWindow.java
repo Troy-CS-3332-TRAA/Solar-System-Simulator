@@ -53,8 +53,6 @@ public class DataWindow extends JFrame {
 	
 	public void initializeDataWindow(ArrayList<Body> bodies) {
 		this.bodies = bodies;
-		this.controller = controller;
-		this.gui = gui;
 		initDataWindow(controller, gui);
 		
 	}
@@ -64,7 +62,7 @@ public class DataWindow extends JFrame {
 		this.add(tableWindow);
 		myBar = new MenuBar(((JPanel) tableWindow), controller, gui);
 		this.setJMenuBar(myBar.getMenuBar());
-		this.setPreferredSize(new Dimension(500,500));
+		this.setPreferredSize(new Dimension(600,300));
 	}
 	//-----Getters/Setters-----//
 

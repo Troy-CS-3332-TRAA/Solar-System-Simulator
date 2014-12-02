@@ -41,7 +41,7 @@ public class DrawBodies extends JPanel
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
 		this.setBackground(Color.black);
-		
+		System.out.println("Drawing bodies...");
 		for (int x = 0; x < bodies.size();x++) {
 			//TODO tweak these coordinates to center the Bodies
 			int a = (int) (Math.round(bodies.get(x).getPositionX()) / 10000); //divide for scaling the distance between bodies
@@ -49,10 +49,14 @@ public class DrawBodies extends JPanel
 			int c = (int) (Math.round(bodies.get(x).getRadius()) * 100 + 20); //multiply and add for scaling of body sizes, allowing smaller bodies to be visible while not being completely dwarfed by larger ones 
 			
 			if (x == 0) {
+				System.out.println("Drawing Sun...");
+				System.out.println("X: " + a + " Y: " + b + " Radi: " + c);
 				g.setColor(Color.orange); //set first object in Bodies, the star, Orange
 				g.fillOval((a - c), (b - c), c, c);
 			}
 			else {
+				System.out.println("Drawing Body: " + x);
+				System.out.println("X: " + a + " Y: " + b + " Radi: " + c);
 				Random rand = new Random();
 				float hue = rand.nextFloat();
 				float sat = (rand.nextInt(2000) + 1000) / 10000f;
