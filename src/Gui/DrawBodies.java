@@ -48,6 +48,10 @@ public class DrawBodies extends JPanel
 			int b = (int) (Math.round(bodies.get(x).getPositionY()) / 10000); 
 			int c = (int) (Math.round(bodies.get(x).getRadius()) * 100 + 20); //multiply and add for scaling of body sizes, allowing smaller bodies to be visible while not being completely dwarfed by larger ones 
 			
+			//This simply tests scrolling
+			g.setColor(Color.RED);
+			g.fillOval(0, 0, 50, 50);
+			
 			if (x == 0) {
 				System.out.println("Drawing Sun...");
 				System.out.println("X: " + a + " Y: " + b + " Radi: " + c);
