@@ -41,33 +41,38 @@ public class DrawBodies extends JPanel
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
 		this.setBackground(Color.black);
+		
+		//Adds the 1/2 w/h of the window to make the center of the coordinate system the middle of the window
+		int windowXOffset = getPreferredSize().width/2;
+		int windowYOffset = getPreferredSize().height/2;
+		
 		System.out.println("Drawing bodies...");
 		for (int x = 0; x < bodies.size();x++) {
 			//TODO tweak these coordinates to center the Bodies
-			int a = (int) (Math.round(bodies.get(x).getPositionX()) / 10000); //divide for scaling the distance between bodies
-			int b = (int) (Math.round(bodies.get(x).getPositionY()) / 10000); 
-			int c = (int) (Math.round(bodies.get(x).getRadius()) * 100 + 20); //multiply and add for scaling of body sizes, allowing smaller bodies to be visible while not being completely dwarfed by larger ones 
+			//int a = (int) (Math.round(bodies.get(x).getPositionX()) / 10000); //divide for scaling the distance between bodies
+			//int b = (int) (Math.round(bodies.get(x).getPositionY()) / 10000);
 			
-			//This simply tests scrolling
-			g.setColor(Color.RED);
-			g.fillOval(0, 0, 50, 50);
+			int a = (int) bodies.get(x).getPositionX()*100 + (int) bodies.get(x).getRadius() + windowXOffset; //divide for scaling the distance between bodies
+			int b = (int) bodies.get(x).getPositionY()*100 + (int) bodies.get(x).getRadius() + windowYOffset;
+			int c = (int) (bodies.get(x).getRadius() * 100); //multiply and add for scaling of body sizes, allowing smaller bodies to be visible while not being completely dwarfed by larger ones 
 			
+			System.out.println();
 			if (x == 0) {
-				System.out.println("Drawing Sun...");
+				System.out.print("Drawing Sun...");
 				System.out.println("X: " + a + " Y: " + b + " Radi: " + c);
 				g.setColor(Color.orange); //set first object in Bodies, the star, Orange
-				g.fillOval((a - c), (b - c), c, c);
+				g.fillOval((a), (b), c, c);
 			}
 			else {
-				System.out.println("Drawing Body: " + x);
-				System.out.println("X: " + a + " Y: " + b + " Radi: " + c);
+				System.out.print("Drawing Body: " + x);
+				System.out.println(" X: " + a + " Y: " + b + " Radi: " + c);
 				Random rand = new Random();
 				float hue = rand.nextFloat();
 				float sat = (rand.nextInt(2000) + 1000) / 10000f;
 				float lum = 0.9f;
 				Color color = Color.getHSBColor(hue, sat, lum); //create random colors for the other bodies in the ArrayList that do not blend with the background 
 				g.setColor(color);
-				g.fillOval((a - c), (b - c), c, c);
+				g.fillOval((a), (b), c, c);
 			}
 			//TODO draw gravity radius/ make window resizable
 		}

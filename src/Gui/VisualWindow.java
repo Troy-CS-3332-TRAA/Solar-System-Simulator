@@ -48,7 +48,7 @@ public class VisualWindow extends JFrame{
 		 MouseListener mouseListner = new MouseListener(dB);
 		 final JScrollPane scrollPane = new JScrollPane(dB);
 		 //TODO This dimension needs to be as large as the distance of the objects represented
-		 dB.setPreferredSize(new Dimension(1000,1000));
+		 dB.setPreferredSize(new Dimension(2000,2000));
 		 scrollPane.getViewport().addMouseListener(mouseListner);
 		 scrollPane.getViewport().addMouseMotionListener(mouseListner);
 		 
