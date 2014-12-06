@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Engine.Body;
@@ -14,7 +15,8 @@ public class DrawBodies extends JPanel
 {
 
 	//-----Members-----//
-	ArrayList <Body> bodies;
+	private ArrayList<Body> bodies;
+	private ArrayList<JLabel> bodiesLabels;
 	
 	
 	
@@ -26,6 +28,14 @@ public class DrawBodies extends JPanel
 	public DrawBodies (ArrayList <Body> bodies)
 	{
 		this.bodies = bodies;
+		bodiesLabels = new ArrayList<JLabel>();
+		for(Body body : bodies) {
+			JLabel label = new JLabel(body.getName());
+			label.setForeground(Color.WHITE);
+			label.setFont(label.getFont().deriveFont(20f));
+			bodiesLabels.add(label);
+			add(label);
+		}
 	}
 	
 	
@@ -50,16 +60,17 @@ public class DrawBodies extends JPanel
 			int a = (int) bodies.get(x).getPositionX()*100 + (int) bodies.get(x).getRadius() + windowXOffset; //divide for scaling the distance between bodies
 			int b = (int) bodies.get(x).getPositionY()*100 + (int) bodies.get(x).getRadius() + windowYOffset;
 			int c = (int) (bodies.get(x).getRadius() * 100); //multiply and add for scaling of body sizes, allowing smaller bodies to be visible while not being completely dwarfed by larger ones 
+			int labelX = a;
+			int labelY = b - (int) bodiesLabels.get(x).getSize().getHeight();
+			int labelH = (int) bodiesLabels.get(x).getSize().getWidth();
+			int labelW = (int) bodiesLabels.get(x).getSize().getHeight();
+			bodiesLabels.get(x).setBounds(a, labelY, labelH, labelW);
 			
 			if (x == 0) {
-				System.out.print("Drawing Sun...");
-				System.out.println("X: " + a + " Y: " + b + " Radi: " + c);
 				g.setColor(Color.orange); //set first object in Bodies, the star, Orange
 				g.fillOval((a), (b), c, c);
 			}
 			else {
-				System.out.print("Drawing Body: " + x);
-				System.out.println(" X: " + a + " Y: " + b + " Radi: " + c);
 				Random rand = new Random();
 				float hue = rand.nextFloat();
 				float sat = (rand.nextInt(2000) + 1000) / 10000f;
