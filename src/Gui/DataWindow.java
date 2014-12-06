@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import Engine.Body;
 import controller.Controller;
@@ -59,6 +60,7 @@ public class DataWindow extends JFrame {
 	//-----Utility Methods-----//
 	protected void initDataWindow(Controller controller, GUI gui) {
 		tableWindow = new TableWindow(bodies);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.add(tableWindow);
 		myBar = new MenuBar(((JPanel) tableWindow), controller, gui);
 		this.setJMenuBar(myBar.getMenuBar());
