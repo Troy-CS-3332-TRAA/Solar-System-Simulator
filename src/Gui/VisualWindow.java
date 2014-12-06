@@ -86,8 +86,10 @@ public class VisualWindow extends JFrame{
 	            int yEnd = e.getY();
 	            JViewport viewPort = (JViewport) e.getSource();
 	            Point vpp = viewPort.getViewPosition();
-	            vpp.translate((xStart - xEnd) / 6, (yStart - yEnd) / 6);
+	            vpp.translate((xStart - xEnd), (yStart - yEnd));
 	            panel.scrollRectToVisible(new Rectangle(vpp, viewPort.getSize()));
+	            xStart = e.getX();
+	        	yStart = e.getY();
 	        }
 	 }
 }
