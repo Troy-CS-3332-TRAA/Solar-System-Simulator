@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.WindowConstants;
@@ -26,12 +27,9 @@ public class VisualWindow extends JFrame{
 	 VisualWindow(String title, ArrayList<Body> bodies){
 		 super(title);
 		 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		 this.getContentPane().add(new MouseScroll().createScroll());
-		 dB = new DrawBodies(bodies);
-		 this.add(dB);
-		 this.getContentPane().add(dB);
 		 this.setPreferredSize(new Dimension(500,500));
-		// this.setVisible(true);
+		 initVisualWindow(bodies);
+		 setVisible(true);
 	 }
 	 /*
 	  * Default constructor lacking bodies information.
@@ -39,20 +37,25 @@ public class VisualWindow extends JFrame{
 	 VisualWindow(String title){
 		 super(title);
 		 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		 this.getContentPane().add(new MouseScroll().createScroll());
 		 this.setPreferredSize(new Dimension(500,500));
-		 this.setVisible(true);
+		 setVisible(true);
 	 }
 	 /*
 	  * Can be called to create a new DrawBodies instance and then add that panel to the frame. 
 	  */
 	 void initVisualWindow(ArrayList<Body> bodies){
 		 dB = new DrawBodies(bodies);
-		 this.add(dB);
-		 this.getContentPane().add(dB);
+		 MouseListener mouseListner = new MouseListener(dB);
+		 final JScrollPane scrollPane = new JScrollPane(dB);
+		 //TODO This dimension needs to be as large as the distance of the objects represented
+		 dB.setPreferredSize(new Dimension(20000,20000));
+		 scrollPane.getViewport().addMouseListener(mouseListner);
+		 scrollPane.getViewport().addMouseMotionListener(mouseListner);
+		 
+		 this.add(scrollPane);
 	 }
 	 /*
-	  * Used by controller to interatively update information and redraw the system. 
+	  * Used by controller to interactively update information and redraw the system. 
 	  */
 	 void step (ArrayList<Body> bodies){
 		 this.bodies = bodies;
@@ -62,42 +65,31 @@ public class VisualWindow extends JFrame{
 	 /* 
 	  * Implementation of mouse listeners for click and drag functionality and use of mouse wheel for zooming.
 	  */
-	 public class MouseScroll {
-			 class MouseScrollListener extends MouseAdapter{
-				private final Point pp = new Point();
-				@Override
-				public void mouseDragged(MouseEvent e){
-					JViewport viewPort = (JViewport)e.getSource();
-					JComponent ourLabel = (JComponent)viewPort.getView();
-					Point cp = e.getPoint();
-					Point vp = viewPort.getViewPosition();
-					vp.translate(pp.x-cp.x, pp.y-cp.y);
-					ourLabel.scrollRectToVisible(new Rectangle(vp, viewPort.getSize()));
-					pp.setLocation(cp);
-				}
-				@Override
-				public void mousePressed(MouseEvent e){
-					pp.setLocation(e.getPoint());
-				}
-			}
-			public JComponent createScroll(){ 
-				JScrollPane scroll = new JScrollPane(dB);
-				JViewport viewPort = scroll.getViewport();
-				MouseAdapter mouseAdapt = new MouseScrollListener();
-				viewPort.addMouseMotionListener(mouseAdapt);
-				viewPort.addMouseListener(mouseAdapt);
-				viewPort.addMouseWheelListener(new MouseAdapter() {
-	                @Override
-	                public void mouseWheelMoved(MouseWheelEvent e1) {
-	                    double delta = 0.05f * e1.getPreciseWheelRotation();
-	                    scale += delta;
-	                    revalidate();
-	                    repaint();
-	                }
-
-	            });
-				return scroll;
-			}
-			
-		}
+	 private class MouseListener extends MouseAdapter {
+	    	int xStart;
+	        int yStart;
+	        JPanel panel;
+	        
+	        private MouseListener(JPanel panel) {
+	        	this.panel = panel;
+	        }
+	        
+	        @Override
+	        public void mousePressed(MouseEvent e) {
+	        	xStart = e.getX();
+	        	yStart = e.getY();
+	        }
+	        
+	        @Override
+	        public void mouseDragged(MouseEvent e) {
+	        	int xEnd = e.getX();
+	            int yEnd = e.getY();
+	            JViewport viewPort = (JViewport) e.getSource();
+	            Point vpp = viewPort.getViewPosition();
+	            vpp.translate((xStart - xEnd), (yStart - yEnd));
+	            panel.scrollRectToVisible(new Rectangle(vpp, viewPort.getSize()));
+	            xStart = e.getX();
+	        	yStart = e.getY();
+	        }
+	 }
 }

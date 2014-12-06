@@ -119,7 +119,7 @@ public class Body implements Comparable<Body>
 			Velocity velocity) {
 		this.name = name;
 		this.positionX = positionX;
-		this.positionX = positionY;
+		this.positionY = positionY;
 		this.positionZ = positionZ;
 		this.radius = radius;
 		this.mass = mass;

@@ -33,6 +33,11 @@ public class BodyTableModel extends AbstractTableModel {
 	}
 
 	@Override
+	public String getColumnName(int col) {
+        return columnNames[col];
+    }
+	
+	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		if(columnIndex == 0) {
 			return bodies.get(rowIndex).getName();

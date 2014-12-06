@@ -1,10 +1,10 @@
 package Gui;
 
 import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import Engine.Body;
@@ -34,9 +34,11 @@ public class TableWindow extends JPanel {
 	//-----Utility Methods-----//
 	protected void initTableWindow() {
 		table = new JTable(new BodyTableModel(bodies));
-		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-        table.setFillsViewportHeight(true);
-        this.add(table);
+		Dimension dataWindowDimensionns = new Dimension(500, 70);
+		table.setPreferredScrollableViewportSize(table.getPreferredSize());
+		table.setFillsViewportHeight(true);
+        JScrollPane scrollPane = new JScrollPane(table);
+        this.add(scrollPane);
 	}
 
 	public void updateBodies(ArrayList<Body> newSimulation) {
