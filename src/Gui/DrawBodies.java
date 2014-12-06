@@ -45,18 +45,12 @@ public class DrawBodies extends JPanel
 		//Adds the 1/2 w/h of the window to make the center of the coordinate system the middle of the window
 		int windowXOffset = getPreferredSize().width/2;
 		int windowYOffset = getPreferredSize().height/2;
-		
-		System.out.println("Drawing bodies...");
+				
 		for (int x = 0; x < bodies.size();x++) {
-			//TODO tweak these coordinates to center the Bodies
-			//int a = (int) (Math.round(bodies.get(x).getPositionX()) / 10000); //divide for scaling the distance between bodies
-			//int b = (int) (Math.round(bodies.get(x).getPositionY()) / 10000);
-			
 			int a = (int) bodies.get(x).getPositionX()*100 + (int) bodies.get(x).getRadius() + windowXOffset; //divide for scaling the distance between bodies
 			int b = (int) bodies.get(x).getPositionY()*100 + (int) bodies.get(x).getRadius() + windowYOffset;
 			int c = (int) (bodies.get(x).getRadius() * 100); //multiply and add for scaling of body sizes, allowing smaller bodies to be visible while not being completely dwarfed by larger ones 
 			
-			System.out.println();
 			if (x == 0) {
 				System.out.print("Drawing Sun...");
 				System.out.println("X: " + a + " Y: " + b + " Radi: " + c);
@@ -74,7 +68,7 @@ public class DrawBodies extends JPanel
 				g.setColor(color);
 				g.fillOval((a), (b), c, c);
 			}
-			//TODO draw gravity radius/ make window resizable
+			//TODO draw gravity radius
 		}
 	}
 
